@@ -79,8 +79,6 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 2. Acesse a pasta do projeto:
    ```bash
    cd codigo
-
-    ```bash
    cd portfolio
    
 4. Instale as dependências:
