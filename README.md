@@ -47,7 +47,7 @@ Os wireframes do sistema foram desenvolvidos no Figma.
 <table>
   <tr>
     <td><b>Hero</b></td>
-    <td><img src="./wireframe/Hero.png" width="300"></td>
+    <td><img src="/wireframes/Hero.png" width="300"></td>
     <td><b>Projects</b></td>
     <td><img src="./wireframe/Projects.png width="300"></td>
     <td><b>Experence</b></td>
