@@ -124,7 +124,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    ```bash
    npm run dev
 
-6. O sistema estará disponível em: http://localhost:3000
+6. O sistema estará disponível em: http://localhost:5173
 
 ## Deploy 
 
