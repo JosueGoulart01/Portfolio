@@ -45,17 +45,40 @@ Logo, o sistema visa facilitar a divulgação das competências e habilidades do
 Os wireframes do sistema foram desenvolvidos no Figma.
 
 <table>
+  <table>
   <tr>
-    <td><b>Hero</b></td>
-    <td><img src="/wireframes/Hero.png" width="300"></td>
-    <td><b>Projects</b></td>
-    <td><img src="./wireframe/Projects.png width="300"></td>
-    <td><b>Experence</b></td>
-    <td><img src="./wireframe/Experence.png width="300"></td>
-    <td><b>Music</b></b></td>
-    <td><img src="./wireframe/Music.png width="300"></td>
-    <td><b>Contact</b></td>
-    <td><img src="./wireframe/Contact.png width="300"></td>
+    <td align="center"><b>Hero Section</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="/wireframes/Hero.png" width="100%"></td>
+  </tr>
+
+  <tr>
+    <td align="center"><b>Projects</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="/wireframes/Projects.png" width="100%"></td>
+  </tr>
+
+  <tr>
+    <td align="center"><b>Experience</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="/wireframes/Experience.png" width="100%"></td>
+  </tr>
+
+  <tr>
+    <td align="center"><b>Music (Spotify)</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="/wireframes/Music.png" width="100%"></td>
+  </tr>
+
+  <tr>
+    <td align="center"><b>Contact</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="/wireframes/Contact.png" width="100%"></td>
   </tr>
 </table>
 
