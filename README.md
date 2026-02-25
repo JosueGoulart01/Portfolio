@@ -57,28 +57,28 @@ Os wireframes do sistema foram desenvolvidos no Figma.
     <td align="center"><b>Projects</b></td>
   </tr>
   <tr>
-    <td align="center"><img src="/wireframes/Projects.png" width="100%"></td>
+    <td align="center"><img src="/wireframes/Projects.jepg" width="100%"></td>
   </tr>
 
   <tr>
     <td align="center"><b>Experience</b></td>
   </tr>
   <tr>
-    <td align="center"><img src="/wireframes/Experience.png" width="100%"></td>
+    <td align="center"><img src="/wireframes/Experience.jepg" width="100%"></td>
   </tr>
 
   <tr>
     <td align="center"><b>Music (Spotify)</b></td>
   </tr>
   <tr>
-    <td align="center"><img src="/wireframes/Music.png" width="100%"></td>
+    <td align="center"><img src="/wireframes/Music.jepg" width="100%"></td>
   </tr>
 
   <tr>
     <td align="center"><b>Contact</b></td>
   </tr>
   <tr>
-    <td align="center"><img src="/wireframes/Contact.png" width="100%"></td>
+    <td align="center"><img src="/wireframes/Contact.jepg" width="100%"></td>
   </tr>
 </table>
 
