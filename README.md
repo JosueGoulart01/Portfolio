@@ -44,8 +44,20 @@ Logo, o sistema visa facilitar a divulgação das competências e habilidades do
 
 Os wireframes do sistema foram desenvolvidos no Figma.
 
-* Link do Figma:
-* Imagens dos protótipos:
+<table>
+  <tr>
+    <td><b>Hero</b></td>
+    <td><img src="./wireframe/Hero.png" width="300"></td>
+    <td><b>Projects</b></td>
+    <td><img src="./wireframe/Projects.png width="300"></td>
+    <td><b>Experence</b></td>
+    <td><img src="./wireframe/Experence.png width="300"></td>
+    <td><b>Music</b></b></td>
+    <td><img src="./wireframe/Music.png width="300"></td>
+    <td><b>Contact</b></td>
+    <td><img src="./wireframe/Contact.png width="300"></td>
+  </tr>
+</table>
 
 ## Tecnologias Previstas
 
