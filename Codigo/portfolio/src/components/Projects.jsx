@@ -1,102 +1,125 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 
 const Projects = ({ language }) => {
+  // Matriz de Dados (Com as URLs reais dos repositórios injetadas)
   const projectsData = {
     pt: [
       {
         id: 1,
-        title: "Loja de Joias (E-commerce)",
-        description: "Aplicação web completa de e-commerce com API RESTful robusta e interface reativa.",
-        tech: ["Java", "Spring Boot", "Next.js", "TypeScript"],
-        github: "https://github.com/seu-usuario/loja-joias",
-        image: "https://via.placeholder.com/600x300/0f0728/38bdf8?text=Jewelry+Store+UI"
+        title: "Re.use - Plataforma Sustentável",
+        description: "Plataforma digital para economia circular têxtil. Fluxo completo de cadastro, triagem e redistribuição de peças de vestuário.",
+        tech: ["Java", "Spring Boot", "MySQL", "Node.js"],
+        github: "https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3687100-brecho-re-use",
+        image: "/reuse-demo.gif",
+        alt: "Demonstração da plataforma Re.use"
       },
       {
         id: 2,
-        title: "Projeto Re.use",
-        description: "Sistema de sustentabilidade. Arquitetura de back-end e modelagem de banco de dados relacional.",
-        tech: ["Java", "Spring Boot", "PostgreSQL", "Docker"],
-        github: "https://github.com/seu-usuario/re-use",
-        image: "https://via.placeholder.com/600x300/0f0728/38bdf8?text=Re.use+Platform"
+        title: "IA Cirúrgica (Iniciação Científica)",
+        description: "Aplicação web com visão computacional (YOLOv8n) para automatizar a identificação e validação de instrumentos cirúrgicos em tempo real.",
+        tech: ["Python", "Flask", "React", "YOLOv8n", "Docker", "AWS"],
+        github: "https://github.com/ICEI-PUC-Minas-PPLES-TI/plu-es-2025-2-extensao-software-saude-fhsfa",
+        image: "/ia-cirurgica.gif",
+        alt: "Detecção de instrumentos cirúrgicos em tempo real"
+      },
+      {
+        id: 3,
+        title: "RoomBookings - Gestão de Reservas",
+        description: "Sistema ágil para gestão e controle de reservas de salas de reunião, otimizando espaços no modelo híbrido e prevenindo conflitos de agenda.",
+        tech: ["Java", "MySQL", "Lógica de Negócios", "POO"],
+        github: "https://github.com/LuizFMoreira/Trabalho-Programa-o-Modular",
+        image: "/roombookings.gif",
+        alt: "Sistema de reservas de salas de reunião"
       }
     ],
     en: [
       {
         id: 1,
-        title: "Jewelry Store (E-commerce)",
-        description: "Full e-commerce web application with robust RESTful API and reactive interface.",
-        tech: ["Java", "Spring Boot", "Next.js", "TypeScript"],
-        github: "https://github.com/seu-usuario/loja-joias",
-        image: "https://via.placeholder.com/600x300/0f0728/38bdf8?text=Jewelry+Store+UI"
+        title: "Re.use - Sustainable Platform",
+        description: "Digital platform for textile circular economy. Complete flow for registration, sorting, and redistribution of clothing.",
+        tech: ["Java", "Spring Boot", "MySQL", "Node.js"],
+        github: "https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti2-3687100-brecho-re-use",
+        image: "/reuse-demo.gif",
+        alt: "Re.use platform demonstration"
       },
       {
         id: 2,
-        title: "Re.use Project",
-        description: "Sustainability system. Back-end architecture and relational database modeling.",
-        tech: ["Java", "Spring Boot", "PostgreSQL", "Docker"],
-        github: "https://github.com/seu-usuario/re-use",
-        image: "https://via.placeholder.com/600x300/0f0728/38bdf8?text=Re.use+Platform"
+        title: "Surgical AI (Scientific Research)",
+        description: "Web application with computer vision (YOLOv8n) to automate the identification and validation of surgical instruments in real-time.",
+        tech: ["Python", "Flask", "React", "YOLOv8n", "Docker", "AWS"],
+        github: "https://github.com/ICEI-PUC-Minas-PPLES-TI/plu-es-2025-2-extensao-software-saude-fhsfa",
+        image: "/ia-cirurgica.gif",
+        alt: "Real-time surgical instrument detection"
+      },
+      {
+        id: 3,
+        title: "RoomBookings - Meeting Management",
+        description: "Agile system for managing and controlling meeting room reservations, optimizing hybrid workspace usage and preventing schedule conflicts.",
+        tech: ["Java", "MySQL", "Business Logic", "OOP"],
+        github: "https://github.com/LuizFMoreira/Trabalho-Programa-o-Modular",
+        image: "/roombookings.gif",
+        alt: "Meeting room reservation system"
       }
     ]
   };
 
   const projects = projectsData[language];
-  const sectionTitle = language === 'pt' ? 'Projetos em Destaque' : 'Featured Projects';
+  const sectionTitle = language === 'pt' ? 'Projetos e Pesquisa' : 'Projects & Research';
 
   return (
-    <section id="projetos" className="py-24 px-6 relative z-10">
-      <div className="max-w-6xl mx-auto">
+    <section id="projetos" className="py-24 px-6 relative z-10 min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-center text-white mb-16"
+          className="text-4xl md:text-5xl font-bold text-center text-white mb-16 tracking-tight"
         >
           {sectionTitle}
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* A Topologia da Grade de Projetos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <CardContainer key={project.id} className="inter-var w-full">
-              <CardBody className="bg-cosmic-light/30 relative group/card dark:hover:shadow-2xl dark:hover:shadow-neon-cyan/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-6 border border-white/10 backdrop-blur-sm">
+            <CardContainer key={project.id} className="inter-var w-full h-full">
+              <CardBody className="bg-cosmic-light/30 relative group/card hover:shadow-2xl hover:shadow-neon-cyan/[0.1] border-white/10 w-full h-full rounded-2xl p-6 border backdrop-blur-sm flex flex-col justify-between">
                 
-                {/* Título flutuando em 3D (translateZ=50) */}
-                <CardItem translateZ="50" className="text-xl font-bold text-white mb-2">
-                  {project.title}
-                </CardItem>
+                <div>
+                  <CardItem translateZ="50" className="text-xl font-bold text-white mb-2">
+                    {project.title}
+                  </CardItem>
+                  
+                  <CardItem as="p" translateZ="60" className="text-slate-400 text-sm mt-2 mb-6 leading-relaxed min-h-[80px]">
+                    {project.description}
+                  </CardItem>
+                  
+                  <CardItem translateZ="100" className="w-full mb-6">
+                    <div className="h-48 w-full overflow-hidden rounded-xl border border-white/10 relative group-hover/card:border-neon-cyan/50 transition-colors">
+                      <img
+                        src={project.image}
+                        onError={(e) => { e.target.src = `https://via.placeholder.com/600x400/0f0728/38bdf8?text=${project.title.replace(/ /g, '+')}` }}
+                        className="h-full w-full object-cover"
+                        alt={project.alt}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-cosmic-dark/80 to-transparent"></div>
+                    </div>
+                  </CardItem>
+                </div>
                 
-                {/* Descrição flutuando menos (translateZ=60) */}
-                <CardItem as="p" translateZ="60" className="text-slate-300 text-sm max-w-sm mt-2 mb-4 leading-relaxed">
-                  {project.description}
-                </CardItem>
-                
-                {/* Imagem saltando para fora (translateZ=100) */}
-                <CardItem translateZ="100" className="w-full mt-4 mb-6">
-                  <img
-                    src={project.image}
-                    height="1000"
-                    width="1000"
-                    className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl border border-white/5"
-                    alt={project.title}
-                  />
-                </CardItem>
-                
-                <div className="flex justify-between items-center mt-4">
-                  {/* Tecnologias flutuando (translateZ=20) */}
+                <div className="flex flex-col gap-4">
                   <CardItem translateZ={20} className="flex flex-wrap gap-2">
                     {project.tech.map((tech, i) => (
-                      <span key={i} className="text-[10px] font-medium bg-neon-purple/20 text-neon-purple px-2 py-1 rounded-full border border-neon-purple/30">
+                      <span key={i} className="text-[10px] font-mono tracking-wider bg-slate-800/80 text-neon-cyan px-2 py-1 rounded-md border border-neon-cyan/20">
                         {tech}
                       </span>
                     ))}
                   </CardItem>
                   
-                  {/* Botão também flutuando (translateZ=20) */}
                   <CardItem translateZ={20} as="a" href={project.github} target="_blank"
-                    className="px-4 py-2 rounded-lg bg-white text-cosmic-dark text-xs font-bold flex items-center gap-2 hover:bg-neon-cyan hover:text-white transition-colors shadow-md">
-                    <FaGithub /> GitHub
+                    className="w-full py-3 rounded-lg bg-white text-cosmic-dark text-sm font-bold flex items-center justify-center gap-2 hover:bg-neon-cyan hover:text-white transition-colors shadow-md cursor-pointer">
+                    <FaGithub size={18} /> Ver Repositório
                   </CardItem>
                 </div>
               </CardBody>
