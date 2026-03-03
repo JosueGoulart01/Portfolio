@@ -22,8 +22,8 @@ const Experience = ({ language }) => {
         ],
         pos: { x: 25, y: 30 }, 
         color: "text-neon-cyan",
-        borderGlow: "border-neon-cyan",
-        glow: "shadow-[0_0_25px_rgba(34,211,238,0.8)]",
+        borderGlow: "border-neon-cyan/50",
+        glow: "shadow-[0_0_20px_rgba(34,211,238,0.4)]",
         bgCore: "bg-cyan-500",
         delay: 0
       },
@@ -41,8 +41,8 @@ const Experience = ({ language }) => {
         ],
         pos: { x: 75, y: 65 },
         color: "text-neon-purple",
-        borderGlow: "border-neon-purple",
-        glow: "shadow-[0_0_25px_rgba(168,85,247,0.8)]",
+        borderGlow: "border-neon-purple/50",
+        glow: "shadow-[0_0_20px_rgba(168,85,247,0.4)]",
         bgCore: "bg-purple-500",
         delay: 0.2
       }
@@ -62,8 +62,8 @@ const Experience = ({ language }) => {
         ],
         pos: { x: 25, y: 30 },
         color: "text-neon-cyan",
-        borderGlow: "border-neon-cyan",
-        glow: "shadow-[0_0_25px_rgba(34,211,238,0.8)]",
+        borderGlow: "border-neon-cyan/50",
+        glow: "shadow-[0_0_20px_rgba(34,211,238,0.4)]",
         bgCore: "bg-cyan-500",
         delay: 0
       },
@@ -81,8 +81,8 @@ const Experience = ({ language }) => {
         ],
         pos: { x: 75, y: 65 },
         color: "text-neon-purple",
-        borderGlow: "border-neon-purple",
-        glow: "shadow-[0_0_25px_rgba(168,85,247,0.8)]",
+        borderGlow: "border-neon-purple/50",
+        glow: "shadow-[0_0_20px_rgba(168,85,247,0.4)]",
         bgCore: "bg-purple-500",
         delay: 0.2
       }
@@ -93,12 +93,8 @@ const Experience = ({ language }) => {
   const title = language === 'pt' ? 'Topologia Profissional.' : 'Professional Topology.';
   const centerPos = { x: 50, y: 50 };
 
-  // ==========================================
-  // O ALGORITMO DE SINCRONIZAÇÃO DE IDIOMA
-  // ==========================================
   useEffect(() => {
     if (selectedNode) {
-      // Procura o nó exato na nova linguagem e atualiza o estado
       const translatedNode = experienceData[language].find(exp => exp.id === selectedNode.id);
       setSelectedNode(translatedNode);
     }
@@ -108,12 +104,13 @@ const Experience = ({ language }) => {
     <section id="experiencias" className="py-32 px-6 relative z-10 min-h-[900px] flex flex-col items-center justify-center">
       <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
         
-        {/* Painel Esquerdo: O Grafo Dinâmico */}
-        <div className="w-full lg:w-1/2 relative h-[500px] md:h-[650px] bg-cosmic-light/30 border border-white/5 rounded-3xl backdrop-blur-xl overflow-hidden shadow-2xl group">
+        {/* Painel Esquerdo: O Grafo Dinâmico (Glassmorphism) */}
+        <div className="w-full lg:w-1/2 relative h-[500px] md:h-[650px] bg-black/30 border border-white/10 rounded-3xl backdrop-blur-xl overflow-hidden shadow-2xl group">
           
+          {/* Radar Decorativo */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
             <div className="w-[300px] h-[300px] rounded-full border border-slate-500"></div>
-            <div className="absolute w-[500px] h-[500px] rounded-full border border-slate-600 border-dashed"></div>
+            <div className="absolute w-[500px] h-[500px] rounded-full border border-slate-600 border-dashed animate-[spin_60s_linear_infinite]"></div>
             <div className="absolute w-[700px] h-[700px] rounded-full border border-slate-700"></div>
           </div>
 
@@ -127,21 +124,21 @@ const Experience = ({ language }) => {
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ 
                     pathLength: 1, 
-                    opacity: isDimmed ? 0.1 : 0.4,
+                    opacity: isDimmed ? 0.05 : 0.4,
                     strokeDashoffset: [0, -100]
                   }}
                   transition={{ 
                     pathLength: { duration: 1.5, ease: "easeInOut" },
-                    strokeDashoffset: { repeat: Infinity, duration: 3, ease: "linear" },
+                    strokeDashoffset: { repeat: Infinity, duration: 4, ease: "linear" },
                     opacity: { duration: 0.3 }
                   }}
                   x1={`${centerPos.x}%`} 
                   y1={`${centerPos.y}%`} 
                   x2={`${exp.pos.x}%`} 
                   y2={`${exp.pos.y}%`} 
-                  stroke={isActive ? "url(#gradient-active)" : "#ffffff"} 
-                  strokeWidth={isActive ? "3" : "2"}
-                  strokeDasharray="8 8"
+                  stroke={isActive ? "url(#gradient-active)" : "rgba(255,255,255,0.3)"} 
+                  strokeWidth={isActive ? "3" : "1.5"}
+                  strokeDasharray="10 5"
                 />
               );
             })}
@@ -153,17 +150,19 @@ const Experience = ({ language }) => {
             </defs>
           </svg>
 
+          {/* Central Node (Root) */}
           <motion.div 
             className="absolute z-10 flex flex-col items-center justify-center"
             style={{ left: `${centerPos.x}%`, top: `${centerPos.y}%`, transform: 'translate(-50%, -50%)' }}
           >
-            <div className="absolute w-32 h-32 bg-slate-100/5 rounded-full animate-ping"></div>
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-cosmic-dark border border-white/20 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.05)] backdrop-blur-md relative overflow-hidden">
-               <span className="text-2xl font-bold text-white tracking-widest relative z-10">LF.</span>
-               <span className="text-[9px] text-slate-400 font-mono mt-1 relative z-10 tracking-widest uppercase">Root</span>
+            <div className="absolute w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-black/60 border border-white/20 flex flex-col items-center justify-center shadow-2xl backdrop-blur-md relative overflow-hidden">
+               <span className="text-2xl font-black text-white tracking-widest relative z-10">LF<span className="text-neon-cyan">.</span></span>
+               <span className="text-[9px] text-slate-400 font-mono mt-1 relative z-10 tracking-[0.2em] uppercase">System_Root</span>
             </div>
           </motion.div>
 
+          {/* Experience Nodes */}
           {experiences.map((exp) => {
             const isActive = selectedNode?.id === exp.id;
             const isDimmed = selectedNode && !isActive;
@@ -175,25 +174,26 @@ const Experience = ({ language }) => {
                 animate={{ 
                   scale: isDimmed ? 0.8 : 1, 
                   opacity: isDimmed ? 0.3 : 1,
-                  y: [0, -10, 0]
+                  y: [0, -8, 0]
                 }}
                 transition={{ 
                   scale: { type: "spring", stiffness: 200, damping: 20 },
                   opacity: { duration: 0.3 },
-                  y: { repeat: Infinity, duration: 4 + exp.delay * 10, ease: "easeInOut" }
+                  y: { repeat: Infinity, duration: 3 + exp.id, ease: "easeInOut" }
                 }}
                 className="absolute z-20 cursor-pointer"
                 style={{ left: `${exp.pos.x}%`, top: `${exp.pos.y}%`, transform: 'translate(-50%, -50%)' }}
                 onClick={() => setSelectedNode(exp)}
               >
                 <div className="relative flex flex-col items-center group">
-                  <div className={`w-8 h-8 rounded-full bg-cosmic-dark border-2 ${isActive ? 'border-white' : 'border-white/30'} ${isActive ? exp.glow : 'shadow-lg'} flex items-center justify-center transition-all duration-300 group-hover:scale-125 z-10`}>
-                    <div className={`w-2.5 h-2.5 rounded-full ${exp.bgCore} ${isActive ? 'animate-none' : 'animate-pulse'}`}></div>
+                  <div className={`w-10 h-10 rounded-full bg-black/80 border-2 transition-all duration-500 flex items-center justify-center z-10 
+                    ${isActive ? 'border-white scale-110 ' + exp.glow : 'border-white/20 group-hover:border-neon-cyan'}`}>
+                    <div className={`w-3 h-3 rounded-full ${exp.bgCore} ${isActive ? 'animate-none' : 'animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]'}`}></div>
                   </div>
                   
-                  <div className={`absolute top-12 flex flex-col items-center transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-70 group-hover:opacity-100 group-hover:translate-y-1'}`}>
-                    <div className="bg-slate-900/90 backdrop-blur-md border border-slate-700 px-4 py-2 rounded-lg whitespace-nowrap shadow-xl">
-                      <span className={`text-sm font-bold ${exp.color} tracking-wide`}>{exp.company}</span>
+                  <div className={`absolute top-14 flex flex-col items-center transition-all duration-500 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0'}`}>
+                    <div className="bg-black/80 backdrop-blur-md border border-white/10 px-4 py-2 rounded-xl whitespace-nowrap shadow-2xl">
+                      <span className={`text-xs font-bold ${exp.color} tracking-widest uppercase`}>{exp.company}</span>
                     </div>
                   </div>
                 </div>
@@ -202,86 +202,100 @@ const Experience = ({ language }) => {
           })}
         </div>
 
-        {/* Painel Direito: O HUD Expandido */}
+        {/* Painel Direito: O HUD Expandido (Glass Terminal) */}
         <div className="w-full lg:w-1/2 h-full flex flex-col justify-center">
           
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="mb-6"
+            className="mb-8 text-center lg:text-left"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none">
               {title}
             </h2>
-            <div className="w-16 h-1 bg-neon-cyan mt-4 rounded-full"></div>
+            <div className="w-24 h-2 bg-gradient-to-r from-neon-cyan to-neon-purple mt-6 rounded-full mx-auto lg:mx-0 shadow-[0_0_15px_rgba(34,211,238,0.5)]"></div>
           </motion.div>
 
-          <div className="relative w-full bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden min-h-[480px] shadow-2xl">
-            <div className="bg-slate-900 px-4 py-3 border-b border-slate-800 flex items-center gap-2">
-              <FaTerminal className="text-slate-500 text-sm" />
-              <span className="text-xs text-slate-500 font-mono tracking-widest uppercase">Data_Stream_Output</span>
+          <div className="relative w-full bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[2rem] overflow-hidden min-h-[520px] shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+            {/* Terminal Header */}
+            <div className="bg-white/5 px-6 py-4 border-b border-white/10 flex justify-between items-center">
+              <div className="flex items-center gap-3">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                </div>
+                <FaTerminal className="text-slate-500 text-xs ml-2" />
+                <span className="text-[10px] text-slate-500 font-mono tracking-[0.3em] uppercase">Exp_Kernel_v2.0</span>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></div>
             </div>
 
-            <div className="p-6 md:p-8 relative h-full flex flex-col">
+            <div className="p-8 md:p-12 relative h-full flex flex-col">
               <AnimatePresence mode="wait">
                 {selectedNode ? (
                   <motion.div
                     key={selectedNode.id}
-                    initial={{ opacity: 0, y: 10, filter: 'blur(5px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, y: -10, filter: 'blur(5px)' }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="relative z-10 flex flex-col h-full"
                   >
-                    <div className="flex justify-between items-start mb-4">
-                      <div className={`w-12 h-12 rounded-xl bg-slate-950 flex items-center justify-center border ${selectedNode.borderGlow} ${selectedNode.glow}`}>
-                        <FaCodeBranch className={`text-xl ${selectedNode.color}`} />
+                    <div className="flex justify-between items-start mb-8">
+                      <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border ${selectedNode.borderGlow} ${selectedNode.glow} backdrop-blur-xl`}>
+                        <FaCodeBranch className={`text-2xl ${selectedNode.color}`} />
                       </div>
-                      <span className="text-xs font-mono text-slate-500 bg-slate-950 px-3 py-1.5 rounded-md border border-slate-800">
-                        ID_NODE: 00{selectedNode.id}
-                      </span>
+                      <div className="text-right">
+                        <span className="text-[10px] font-mono text-slate-500 block mb-1">STAMP_ID</span>
+                        <span className="text-xs font-mono text-white bg-white/10 px-3 py-1 rounded-full border border-white/10">
+                          NODE_0x0{selectedNode.id}
+                        </span>
+                      </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-white mb-1">{selectedNode.role}</h3>
-                    <div className="text-slate-400 text-sm font-mono mb-6 pb-4 border-b border-white/10 flex flex-wrap gap-2">
-                      <span className="text-white font-semibold">{selectedNode.company}</span> 
-                      <span>|</span> 
-                      <span className={selectedNode.color}>{selectedNode.period}</span>
+                    <h3 className="text-3xl font-bold text-white mb-2 tracking-tight">{selectedNode.role}</h3>
+                    <div className="flex items-center gap-3 mb-8">
+                      <span className="text-neon-cyan font-bold text-sm tracking-widest uppercase">{selectedNode.company}</span>
+                      <div className="w-1 h-1 rounded-full bg-slate-600"></div>
+                      <span className="text-slate-400 font-mono text-xs">{selectedNode.period}</span>
                     </div>
 
-                    <p className="text-slate-300 leading-relaxed font-light mb-6">
-                      {selectedNode.description}
+                    <p className="text-slate-300 leading-relaxed text-lg font-light mb-10 border-l-2 border-white/10 pl-6 italic">
+                      "{selectedNode.description}"
                     </p>
 
-                    <div className="mb-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <FaLayerGroup className="text-slate-500 text-sm" />
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Tech Stack</span>
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div>
+                        <div className="flex items-center gap-2 mb-4">
+                          <FaLayerGroup className="text-neon-cyan text-xs" />
+                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Technology_Stack</span>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedNode.techStack.map((tech, idx) => (
+                            <span key={idx} className="bg-white/5 border border-white/10 text-white text-[10px] px-3 py-1.5 rounded-lg font-mono hover:border-neon-cyan/50 transition-colors">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedNode.techStack.map((tech, idx) => (
-                          <span key={idx} className="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1 rounded-full shadow-sm">
-                            {tech}
-                          </span>
-                        ))}
+
+                      <div>
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className={`w-1.5 h-1.5 rounded-full ${selectedNode.bgCore}`}></div>
+                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Key_Achievements</span>
+                        </div>
+                        <ul className="space-y-3">
+                          {selectedNode.achievements.map((item, idx) => (
+                            <li key={idx} className="flex items-start gap-3 text-xs text-slate-400 group/item">
+                              <FaAngleRight className={`mt-0.5 flex-shrink-0 transition-transform group-hover/item:translate-x-1 ${selectedNode.color}`} />
+                              <span className="leading-relaxed group-hover/item:text-white transition-colors">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
-
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Key Outputs</span>
-                      </div>
-                      <ul className="space-y-2">
-                        {selectedNode.achievements.map((item, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-slate-400">
-                            <FaAngleRight className={`mt-1 flex-shrink-0 ${selectedNode.color}`} />
-                            <span className="leading-relaxed">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
                   </motion.div>
                 ) : (
                   <motion.div 
@@ -289,13 +303,17 @@ const Experience = ({ language }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 flex flex-col items-center justify-center text-slate-600 h-full"
+                    className="absolute inset-0 flex flex-col items-center justify-center text-slate-600 h-full p-12 text-center"
                   >
-                    <div className="w-16 h-16 rounded-full border border-slate-700/50 flex items-center justify-center mb-4">
-                      <div className="w-2 h-2 rounded-full bg-slate-700 animate-ping"></div>
+                    <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center mb-8 relative">
+                      <div className="w-3 h-3 rounded-full bg-neon-cyan/50 animate-ping absolute"></div>
+                      <div className="w-3 h-3 rounded-full bg-neon-cyan shadow-[0_0_15px_rgba(34,211,238,0.8)]"></div>
                     </div>
-                    <p className="text-sm font-mono tracking-widest uppercase">
-                      {language === 'pt' ? 'Aguardando Seleção de Nó...' : 'Awaiting Node Selection...'}
+                    <p className="text-sm font-mono tracking-[0.3em] uppercase text-slate-400 mb-2">
+                      {language === 'pt' ? 'Sincronização Necessária' : 'Sync Required'}
+                    </p>
+                    <p className="text-xs text-slate-600 max-w-[200px] leading-relaxed">
+                      {language === 'pt' ? 'Selecione um nó na topologia para extrair dados brutos.' : 'Select a node in the topology to extract raw data.'}
                     </p>
                   </motion.div>
                 )}

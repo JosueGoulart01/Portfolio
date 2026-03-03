@@ -109,11 +109,9 @@ const Contact = ({ language }) => {
   ];
 
   return (
-    <section id="contato" className="py-24 px-6 relative overflow-hidden">
-      {/* Luz de fundo sutil */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-neon-purple/20 rounded-full blur-[120px] -z-10"></div>
-
+    <section id="contato" className="py-32 px-6 relative z-10 overflow-hidden">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        
         {/* Coluna da Esquerda: Textos e Links */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -121,13 +119,13 @@ const Contact = ({ language }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-neon-cyan font-semibold tracking-wider uppercase mb-4 block">
-            {text.tagline}
+          <span className="text-neon-cyan font-bold tracking-widest uppercase mb-4 block text-sm flex items-center gap-2">
+            <div className="w-8 h-px bg-neon-cyan"></div> {text.tagline}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">
             {text.title}
           </h2>
-          <p className="text-slate-400 text-lg mb-10 leading-relaxed max-w-lg">
+          <p className="text-slate-300 text-lg mb-10 leading-relaxed max-w-lg font-light">
             {text.description}
           </p>
 
@@ -138,82 +136,85 @@ const Contact = ({ language }) => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center rounded-xl bg-cosmic-light/50 border border-white/10 text-slate-300 hover:text-neon-cyan hover:border-neon-cyan/50 transition-all duration-300 hover:-translate-y-1 shadow-lg"
+                className="w-14 h-14 flex items-center justify-center rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-white hover:text-neon-cyan hover:border-neon-cyan hover:bg-neon-cyan/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg group"
               >
-                <link.icon size={20} />
+                <link.icon size={24} className="group-hover:scale-110 transition-transform" />
               </a>
             ))}
           </div>
         </motion.div>
 
-        {/* Coluna da Direita: Formulário Clean */}
+        {/* Coluna da Direita: Formulário Glassmorphism */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="bg-cosmic-light/30 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl relative z-10"
+            className="bg-black/40 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10"
           >
-            <div className="space-y-5">
+            <div className="space-y-6">
               <div>
-                <label className="text-slate-400 text-sm font-medium mb-2 block">
+                <label className="text-slate-300 text-sm font-semibold mb-2 block tracking-wide">
                   {text.nameLabel}
                 </label>
                 <input
                   type="text"
                   name="user_name"
                   required
-                  className={`w-full bg-cosmic-dark/50 border rounded-xl p-3.5 text-white 
-  ${errors.user_name ? "border-red-500" : "border-white/10"}
-  focus:outline-none focus:border-neon-cyan/50 transition-all`}
+                  className={`w-full bg-white/5 border rounded-xl p-4 text-white placeholder-slate-500 backdrop-blur-sm
+                  ${errors.user_name ? "border-red-500" : "border-white/10"}
+                  focus:outline-none focus:border-neon-cyan focus:bg-white/10 transition-all focus:shadow-[0_0_15px_rgba(34,211,238,0.2)]`}
                 />
               </div>
               <div>
-                <label className="text-slate-400 text-sm font-medium mb-2 block">
+                <label className="text-slate-300 text-sm font-semibold mb-2 block tracking-wide">
                   {text.emailLabel}
                 </label>
                 <input
                   type="email"
                   name="user_email"
                   required
-                  className={`w-full bg-cosmic-dark/50 border rounded-xl p-3.5 text-white 
-  ${errors.user_email ? "border-red-500" : "border-white/10"}
-  focus:outline-none focus:border-neon-cyan/50 transition-all`}
+                  className={`w-full bg-white/5 border rounded-xl p-4 text-white placeholder-slate-500 backdrop-blur-sm
+                  ${errors.user_email ? "border-red-500" : "border-white/10"}
+                  focus:outline-none focus:border-neon-cyan focus:bg-white/10 transition-all focus:shadow-[0_0_15px_rgba(34,211,238,0.2)]`}
                 />
               </div>
               <div>
-                <label className="text-slate-400 text-sm font-medium mb-2 block">
+                <label className="text-slate-300 text-sm font-semibold mb-2 block tracking-wide">
                   {text.messageLabel}
                 </label>
                 <textarea
                   name="message"
                   rows="4"
                   required
-                  className={`w-full bg-cosmic-dark/50 border rounded-xl p-3.5 text-white 
-    
-                    ${errors.message ? "border-red-500" : "border-white/10"}
-    focus:outline-none focus:border-neon-cyan/50 transition-all resize-none`}
+                  className={`w-full bg-white/5 border rounded-xl p-4 text-white placeholder-slate-500 backdrop-blur-sm
+                  ${errors.message ? "border-red-500" : "border-white/10"}
+                  focus:outline-none focus:border-neon-cyan focus:bg-white/10 transition-all resize-none focus:shadow-[0_0_15px_rgba(34,211,238,0.2)]`}
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full bg-gradient-to-r from-neon-cyan to-neon-purple text-white font-bold py-4 px-8 rounded-xl transition-all hover:opacity-90 disabled:opacity-50 mt-2 shadow-lg hover:shadow-neon-cyan/25"
+                className="w-full bg-white/10 text-white border border-neon-cyan hover:bg-neon-cyan hover:text-black font-bold py-4 px-8 rounded-xl transition-all duration-300 disabled:opacity-50 mt-4 shadow-lg flex justify-center items-center"
               >
-                {status === "loading" ? text.loadingText : text.buttonText}
+                {status === "loading" ? <FaSpinner className="animate-spin text-xl" /> : text.buttonText}
               </button>
+              
+              {/* Feedback States */}
               {status === "success" && (
-                <p className="text-emerald-400 text-center mt-3">
-                  {text.successMsg}
-                </p>
+                <div className="flex items-center gap-2 text-emerald-400 mt-4 bg-emerald-400/10 p-3 rounded-lg border border-emerald-400/20 justify-center">
+                  <FaCheckCircle /> <span className="text-sm font-semibold">{text.successMsg}</span>
+                </div>
               )}
               {status === "error" && (
-                <p className="text-red-400 text-center mt-3">{text.errorMsg}</p>
+                <div className="flex items-center gap-2 text-red-400 mt-4 bg-red-400/10 p-3 rounded-lg border border-red-400/20 justify-center">
+                  <FaExclamationCircle /> <span className="text-sm font-semibold">{text.errorMsg}</span>
+                </div>
               )}
             </div>
           </form>

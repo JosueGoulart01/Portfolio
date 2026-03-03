@@ -1,88 +1,100 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, useScroll, useSpring, useMotionValueEvent } from 'framer-motion';
+import { useLenis } from '@studio-freight/react-lenis';
 
 const Navbar = ({ language, toggleLanguage }) => {
   const [scrolled, setScrolled] = useState(false);
+  const { scrollY, scrollYProgress } = useScroll();
+  const lenis = useLenis();
 
-  // Efeito para detectar o scroll da página e aplicar o "fundo de vidro"
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
-  // Dicionário exato das rotas do menu de navegação
-  const navLinks = {
-    pt: [
-      { name: 'Sobre Mim', href: '#sobre' },
-      { name: 'Tecnologias', href: '#tecnologias' }, // Nova página alocada aqui
-      { name: 'Projetos', href: '#projetos' },
-      { name: 'Topologia', href: '#experiencias' },  // Atualizado de Experiências para Topologia
-      { name: 'Contato', href: '#contato' }
-    ],
-    en: [
-      { name: 'About Me', href: '#sobre' },
-      { name: 'Technologies', href: '#tecnologias' }, // Nova página alocada aqui
-      { name: 'Projects', href: '#projetos' },
-      { name: 'Topology', href: '#experiencias' },    // Tradução exata aplicada
-      { name: 'Contact', href: '#contato' }
-    ]
+  const handleScrollTo = (e, href) => {
+    e.preventDefault();
+    if (lenis) {
+      lenis.scrollTo(href, {
+        offset: -100,
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+    }
   };
 
-  const links = navLinks[language];
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 50 && !scrolled) setScrolled(true);
+    if (latest <= 50 && scrolled) setScrolled(false);
+  });
+
+  // Lista de links atualizada com Música
+  const links = language === 'pt' 
+    ? [
+        { name: 'Sobre', href: '#sobre' },
+        { name: 'Projetos', href: '#projetos' },
+        { name: 'Experiência', href: '#experiencias' },
+        { name: 'Música', href: '#musica' },
+        { name: 'Contato', href: '#contato' }
+      ]
+    : [
+        { name: 'About', href: '#sobre' },
+        { name: 'Projects', href: '#projetos' },
+        { name: 'Experience', href: '#experiencias' },
+        { name: 'Music', href: '#musica' },
+        { name: 'Contact', href: '#contato' }
+      ];
 
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-cosmic-dark/80 backdrop-blur-md border-b border-white/10 py-4 shadow-lg' : 'bg-transparent py-6'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        
-        {/* Logo Esquerda */}
-        <motion.a 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          href="#home" 
-          className="text-2xl font-bold text-white tracking-widest cursor-pointer"
-        >
-          LF<span className="text-neon-cyan animate-pulse">.</span>
-        </motion.a>
-
-        {/* Links Centrais (Desktop) */}
+    <>
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-[2px] bg-neon-cyan z-[101] origin-left" 
+        style={{ scaleX }} 
+      />
+      
+      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:p-6 pointer-events-none">
         <motion.nav 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="hidden md:flex items-center gap-8"
+          layout
+          className={`
+            pointer-events-auto flex items-center justify-between w-full max-w-5xl px-6 py-3 rounded-2xl border 
+            transition-all duration-500
+            ${scrolled 
+              ? 'bg-black/60 backdrop-blur-md border-white/10 shadow-2xl translate-y-2' 
+              : 'bg-transparent border-transparent translate-y-0'
+            }
+          `}
         >
-          {links.map((link, index) => (
-            <a 
-              key={index} 
-              href={link.href} 
-              className="text-sm font-semibold text-slate-300 hover:text-neon-cyan transition-colors tracking-wide"
-            >
-              {link.name}
-            </a>
-          ))}
-        </motion.nav>
+          <a 
+            href="#home" 
+            onClick={(e) => handleScrollTo(e, '#home')}
+            className="text-xl font-black text-white tracking-tighter hover:opacity-80 transition-opacity"
+          >
+            LF<span className="text-neon-cyan animate-pulse">.</span>
+          </a>
 
-        {/* Botão de Tradução Direita */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-        >
+          <div className="hidden md:flex gap-8">
+            {links.map((link, idx) => (
+              <a 
+                key={idx} 
+                href={link.href} 
+                onClick={(e) => handleScrollTo(e, link.href)}
+                className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-white transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
           <button 
             onClick={toggleLanguage}
-            className="px-4 py-2 rounded-lg border border-white/20 text-white text-xs font-bold hover:bg-white/10 hover:border-neon-cyan transition-all cursor-pointer tracking-widest"
+            className="text-[10px] font-mono border border-white/20 px-4 py-1.5 rounded-full hover:bg-white/10 transition-all text-white bg-white/5"
           >
             {language === 'pt' ? 'EN' : 'PT'}
           </button>
-        </motion.div>
-
-      </div>
-    </header>
+        </motion.nav>
+      </header>
+    </>
   );
 };
 
