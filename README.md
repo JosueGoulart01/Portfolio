@@ -123,7 +123,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 4. Garantir o React Router e Icons
   ```bash
    npm install react-router-dom react-icons
-   
+
 5. Execute o projeto
    ```bash
    npm run dev
