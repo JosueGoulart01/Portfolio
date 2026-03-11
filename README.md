@@ -4,7 +4,7 @@ Website de portfólio profissional desenvolvido para apresentar informações pe
 O sistema foi desenvolvido como atividade da disciplina Laboratório de Desenvolvimento de Software, com deploy em nuvem e organização completa do repositório.
 
 # Link do Portfolio:
-https://portfoliodev-lime.vercel.app/todos-projetos
+https://portfoliodev-lime.vercel.app/
 
 ## Alunos integrantes da equipe
 
