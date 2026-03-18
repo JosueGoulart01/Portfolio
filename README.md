@@ -4,7 +4,7 @@ Website de portfólio profissional desenvolvido para apresentar informações pe
 O sistema foi desenvolvido como atividade da disciplina Laboratório de Desenvolvimento de Software, com deploy em nuvem e organização completa do repositório.
 
 # Link do Portfolio:
-Josué Goulart: https://josuegoulart-7l9k4vt98-josuegoulart01s-projects.vercel.app/
+Josué Goulart: https://josuegoulart.vercel.app/
 
 ## Descrição do Projeto
 O objetivo deste projeto é desenvolver um website de portfólio profissional, destinado à apresentação do perfil do desenvolvedor. 
