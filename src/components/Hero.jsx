@@ -54,7 +54,7 @@ const Hero = ({ language }) => {
             
             <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] shadow-2xl group transform-gpu">
               <img 
-                src="public/img/foto-perfil.jpeg" 
+                src="/img/foto-perfil.jpeg" 
                 alt="Josué Goulart"
                 className="w-full h-full object-cover grayscale opacity-90 lg:opacity-80 lg:group-hover:grayscale-0 lg:group-hover:opacity-100 transition-all duration-700 ease-in-out scale-[1.01]"
               />
