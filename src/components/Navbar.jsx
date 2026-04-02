@@ -3,10 +3,10 @@ import {
   motion,
   useScroll,
   useSpring,
-  useMotionValueEvent,
-  AnimatePresence
+  useMotionValueEvent
 } from "framer-motion";
 import { useLenis } from "@studio-freight/react-lenis";
+import { useNavigate, useLocation } from "react-router-dom"; // Importamos os hooks de rota
 import { FaFileDownload } from "react-icons/fa";
 
 const Navbar = ({ language, toggleLanguage }) => {
@@ -14,8 +14,9 @@ const Navbar = ({ language, toggleLanguage }) => {
   const [hoveredLink, setHoveredLink] = useState(null);
   const { scrollY, scrollYProgress } = useScroll();
   const lenis = useLenis();
+  const navigate = useNavigate(); // Hook para navegar entre páginas
+  const location = useLocation(); // Hook para saber em qual página estamos
 
-  // Detecta o scroll com throttle natural do Framer Motion
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 60);
   });
@@ -26,14 +27,44 @@ const Navbar = ({ language, toggleLanguage }) => {
     restDelta: 0.001,
   });
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+
+    // Se NÃO estivermos na home (/), navegamos para ela
+    if (location.pathname !== "/") {
+      navigate("/");
+      // Opcional: timeout curto para dar tempo da página carregar antes do scroll
+      setTimeout(() => {
+        if (lenis) lenis.scrollTo("#home", { duration: 1.5 });
+      }, 100);
+    } else {
+      // Se já estivermos na home, apenas faz o scroll
+      if (lenis) {
+        lenis.scrollTo("#home", {
+          offset: -80,
+          duration: 1.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      }
+    }
+  };
+
   const handleScrollTo = (e, href) => {
     e.preventDefault();
-    if (lenis) {
-      lenis.scrollTo(href, {
-        offset: -80,
-        duration: 1.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
+    // Se clicar em um link de âncora (ex: #sobre) estando em outra página
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        if (lenis) lenis.scrollTo(href, { offset: -80, duration: 1.5 });
+      }, 100);
+    } else {
+      if (lenis) {
+        lenis.scrollTo(href, {
+          offset: -80,
+          duration: 1.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      }
     }
   };
 
@@ -60,7 +91,6 @@ const Navbar = ({ language, toggleLanguage }) => {
 
   return (
     <>
-      {/* Barra de Progresso - Agora com Glow lateral */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] z-[130] origin-left pointer-events-none"
         style={{
@@ -85,18 +115,19 @@ const Navbar = ({ language, toggleLanguage }) => {
             }
           `}
         >
-          {/* Logo - Com efeito de brilho no hover */}
+          {/* Logo JG - Agora com inteligência de rota */}
           <a
-            href="#home"
-            onClick={(e) => handleScrollTo(e, "#home")}
-            className="flex items-center group relative px-2"
+            href="/"
+            onClick={handleLogoClick}
+            className="flex items-center group relative px-2 pointer-events-auto cursor-pointer"
           >
             <span className="text-sm font-black text-white tracking-tighter transition-all group-hover:tracking-normal">
-              {content[language].logo}<span className="text-indigo-500 group-hover:text-white transition-colors">.</span>
+              {content[language].logo}
+              <span className="text-indigo-500 group-hover:text-white transition-colors">.</span>
             </span>
           </a>
 
-          {/* Links de Navegação - Com background flutuante no hover */}
+          {/* Links de Navegação */}
           <div className="hidden md:flex items-center gap-2 relative">
             {links.map((link, idx) => (
               <a
@@ -115,35 +146,31 @@ const Navbar = ({ language, toggleLanguage }) => {
                     className="absolute inset-0 bg-white/[0.05] rounded-full -z-10"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
                   />
                 )}
               </a>
             ))}
           </div>
 
-          {/* Ações / Controles */}
           <div className="flex items-center gap-3">
-            {/* Currículo - Estilo Glass-Button */}
             <a
               href="/curriculo.pdf"
               download
               className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full 
                        bg-indigo-500/10 border border-indigo-500/20 text-indigo-300
                        hover:bg-indigo-500 hover:text-white transition-all duration-500 
-                       text-[9px] font-black uppercase tracking-widest active:scale-95"
+                       text-[9px] font-black uppercase tracking-widest active:scale-95 pointer-events-auto"
             >
               <FaFileDownload size={10} />
               {content[language].btnResume}
             </a>
 
-            {/* Toggle de Idioma - Minimalista Circular */}
             <button
               onClick={toggleLanguage}
               className="w-9 h-9 flex items-center justify-center rounded-full 
                        border border-white/5 bg-white/[0.02] text-white/40 
                        hover:border-indigo-500/50 hover:text-indigo-400 transition-all 
-                       active:scale-90 relative overflow-hidden group"
+                       active:scale-90 relative overflow-hidden group pointer-events-auto"
             >
               <span className="text-[9px] font-black group-hover:scale-110 transition-transform">
                 {language === "pt" ? "EN" : "PT"}
