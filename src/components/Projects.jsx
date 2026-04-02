@@ -42,9 +42,9 @@ const Projects = ({ language }) => {
       { id: 3, title: "E-commerce", description: "Loja full-stack em Next.js e Spring.", tech: ["Next.js", "TS"], github: "#", images: ["/img/detalhesPrata/image.png"], alt: "E-commerce" },
     ],
     en: [
-        { id: 1, title: "Re.use", description: "Circular textile economy platform.", tech: ["Java", "Spring"], github: "#", images: ["/img/Re.use/image.png"], alt: "Re.use" },
-        { id: 2, title: "Surgical AI", description: "Computer vision for instruments.", tech: ["Python", "YOLO"], github: "#", images: ["/img/ProjetoExtensao/imagem3.jpeg"], alt: "Surgical AI" },
-        { id: 3, title: "E-commerce", description: "Full-stack Next.js & Spring store.", tech: ["Next.js", "TS"], github: "#", images: ["/img/detalhesPrata/image.png"], alt: "E-commerce" },
+      { id: 1, title: "Re.use", description: "Circular textile economy platform.", tech: ["Java", "Spring"], github: "#", images: ["/img/Re.use/image.png"], alt: "Re.use" },
+      { id: 2, title: "Surgical AI", description: "Computer vision for instruments.", tech: ["Python", "YOLO"], github: "#", images: ["/img/ProjetoExtensao/imagem3.jpeg"], alt: "Surgical AI" },
+      { id: 3, title: "E-commerce", description: "Full-stack Next.js & Spring store.", tech: ["Next.js", "TS"], github: "#", images: ["/img/detalhesPrata/image.png"], alt: "E-commerce" },
     ]
   };
 
@@ -53,7 +53,7 @@ const Projects = ({ language }) => {
   return (
     <section id="projetos" className="py-20 px-6 md:px-12 bg-[#050505]">
       <div className="max-w-5xl mx-auto">
-        
+
         {/* Header Minimalista */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -126,16 +126,38 @@ const Projects = ({ language }) => {
           ))}
         </div>
 
-        {/* Botão de Saída Discreto */}
-        <div className="mt-12 text-center">
+       {/* Botão de Saída - Equilibrado para Mobile e Desktop */}
+      <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="mt-12 mb-6 text-center"
+        >
           <Link
             to="/todos-projetos"
-            className="group inline-flex items-center gap-2 px-5 py-2 border border-white/[0.05] text-[#8e8e93] text-[9px] font-bold rounded-full hover:bg-white hover:text-black hover:border-white transition-all"
-          >
-            {language === "pt" ? "Ver todos" : "View all"}
-            <FaArrowRight className="group-hover:translate-x-1 transition-transform" size={8} />
+            className="
+            group inline-flex items-center gap-2.5 
+            px-6 py-3.5 
+            md:px-8 md:py-4
+            border border-white/10 
+            bg-white/[0.02]
+            text-white 
+            text-[10px] md:text-[11px] 
+            font-black uppercase tracking-[0.25em] 
+            rounded-full 
+            hover:bg-white hover:text-black hover:border-white 
+            hover:shadow-[0_0_25px_rgba(255,255,255,0.1)]
+            transition-all duration-500
+            active:scale-95
+          "
+  >
+            {language === "pt" ? "Ver todos os projetos" : "View all projects"}
+            <FaArrowRight 
+              className="group-hover:translate-x-1.5 transition-transform duration-500" 
+              size={10} 
+            />
           </Link>
-        </div>
+      </motion.div>
       </div>
     </section>
   );

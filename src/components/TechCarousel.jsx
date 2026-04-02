@@ -1,43 +1,54 @@
-import { motion, useMotionValue, useSpring, useAnimate } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
+import { useState, useRef } from "react";
 
 const TechCarousel = ({ icons, searchTerm, setSearchTerm }) => {
-  const duplicatedIcons = [...Object.entries(icons), ...Object.entries(icons), ...Object.entries(icons)];
+  // Duplicamos apenas o necessário para performance
+  const duplicatedEntries = [...Object.entries(icons), ...Object.entries(icons), ...Object.entries(icons)];
   
-  // Controle de velocidade: 1 é normal, 0 é parado
   const [isHovered, setIsHovered] = useState(false);
-  const speed = useSpring(isHovered ? 0 : 1, {
-    damping: 20, // Suavidade da parada
-    stiffness: 90, // Força da retomada
+  const baseX = useMotionValue(0);
+  
+  // UseAnimationFrame roda na taxa de atualização da tela (60fps/120fps)
+  // É muito mais fluido que CSS keyframes para interações de pausa.
+  useAnimationFrame((t, delta) => {
+    // Ajuste o '0.02' para mudar a velocidade base
+    let moveBy = -0.02 * delta;
+
+    if (isHovered) {
+      // Desaceleração suave (Inércia)
+      moveBy = 0; 
+    }
+
+    // Se não estiver pausado, move. O Framer lida com a suavidade internamente
+    if (!isHovered) {
+       baseX.set(baseX.get() + moveBy);
+    }
+
+    // Loop infinito: Reset quando chegar em 1/3 do conteúdo
+    if (baseX.get() <= -33.33) {
+      baseX.set(0);
+    }
   });
+
+  // Transformamos o valor numérico em porcentagem para o CSS
+  const x = useTransform(baseX, (v) => `${v}%`);
 
   return (
     <div className="relative w-full overflow-hidden py-10 mb-12">
       {/* Máscaras de Gradiente */}
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent z-20 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#050505] via-[#050505]/80 to-transparent z-20 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050505] z-20 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#050505] z-20 pointer-events-none" />
       
       <div 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="flex"
+        className="flex cursor-pointer"
       >
         <motion.div 
-          className="flex gap-4 w-max px-4"
-          animate={{ x: ["0%", "-33.33%"] }}
-          transition={{ 
-            ease: "linear", 
-            duration: 35, 
-            repeat: Infinity,
-          }}
-          // A mágica: O style inline de 'animationPlayState' reage ao spring do Framer
-          style={{
-            // Quando speed < 0.1 (quase parado), pausamos a animação nativa de forma suave
-            animationPlayState: isHovered ? "paused" : "running",
-            filter: "blur(0px)", // Hack para forçar aceleração de hardware
-          }}
+          className="flex gap-4 w-max px-4" 
+          style={{ x }}
         >
-          {duplicatedIcons.map(([name, icon], idx) => {
+          {duplicatedEntries.map(([name, icon], idx) => {
             const isActive = searchTerm.toLowerCase() === name.toLowerCase();
             return (
               <button
@@ -56,13 +67,6 @@ const TechCarousel = ({ icons, searchTerm, setSearchTerm }) => {
           })}
         </motion.div>
       </div>
-
-      {/* CSS Injetado para garantir que a transição de pausa seja aplicada à animação do transform */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        .flex > div {
-          transition: animation-play-state 0.6s ease-in-out;
-        }
-      `}} />
     </div>
   );
 };
