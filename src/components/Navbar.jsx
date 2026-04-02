@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import {
   motion,
   useScroll,
   useSpring,
   useMotionValueEvent,
+  AnimatePresence
 } from "framer-motion";
 import { useLenis } from "@studio-freight/react-lenis";
-import { FaFileDownload } from "react-icons/fa"; // Importação do ícone de download curriculo
+import { FaFileDownload } from "react-icons/fa";
 
 const Navbar = ({ language, toggleLanguage }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState(null);
   const { scrollY, scrollYProgress } = useScroll();
   const lenis = useLenis();
+
+  // Detecta o scroll com throttle natural do Framer Motion
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 60);
+  });
 
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -23,110 +30,130 @@ const Navbar = ({ language, toggleLanguage }) => {
     e.preventDefault();
     if (lenis) {
       lenis.scrollTo(href, {
-        offset: -100,
+        offset: -80,
         duration: 1.5,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
     }
   };
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 50 && !scrolled) setScrolled(true);
-    if (latest <= 50 && scrolled) setScrolled(false);
-  });
-
-  // Conteúdo de texto para os botões
   const content = {
-    pt: { btnResume: "BAIXAR CURRÍCULO" },
-    en: { btnResume: "DOWNLOAD RESUME" },
+    pt: { btnResume: "CV", logo: "JG" },
+    en: { btnResume: "CV", logo: "JG" },
   };
-  const text = content[language];
 
-  // Lista de links atualizada com Música
-  const links =
-    language === "pt"
-      ? [
-          { name: "Sobre", href: "#sobre" },
-          { name: "Projetos", href: "#projetos" },
-          { name: "Experiência", href: "#experiencias" },
-          { name: "Música", href: "#musica" },
-          { name: "Contato", href: "#contato" },
-          {},
-        ]
-      : [
-          { name: "About", href: "#sobre" },
-          { name: "Projects", href: "#projetos" },
-          { name: "Experience", href: "#experiencias" },
-          { name: "Music", href: "#musica" },
-          { name: "Contact", href: "#contato" },
-        ];
+  const links = language === "pt" 
+    ? [
+        { name: "Sobre", href: "#sobre" },
+        { name: "Projetos", href: "#projetos" },
+        { name: "Experiência", href: "#experiencias" },
+        { name: "Insight", href: "#insight" },
+        { name: "Contato", href: "#contato" },
+      ]
+    : [
+        { name: "About", href: "#sobre" },
+        { name: "Projects", href: "#projetos" },
+        { name: "Experience", href: "#experiencias" },
+        { name: "Insight", href: "#insight" },
+        { name: "Contact", href: "#contato" },
+      ];
 
   return (
     <>
+      {/* Barra de Progresso - Agora com Glow lateral */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] bg-neon-cyan z-[101] origin-left"
-        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-[2px] z-[130] origin-left pointer-events-none"
+        style={{
+          scaleX,
+          background: 'linear-gradient(90deg, transparent, #6366f1, #a5b4fc)',
+          boxShadow: scrolled ? '0 0 8px rgba(99, 102, 241, 0.4)' : 'none'
+        }}
       />
 
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:p-6 pointer-events-none">
+      <header className="fixed top-0 left-0 right-0 z-[120] flex justify-center px-6 py-6 pointer-events-none">
         <motion.nav
-          layout
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className={`
-            pointer-events-auto flex items-center justify-between w-full max-w-5xl px-6 py-3 rounded-2xl border 
-            transition-all duration-500
+            pointer-events-auto flex items-center justify-between w-full max-w-5xl px-5 py-2.5 rounded-full
+            transition-all duration-700 ease-in-out border
             ${
               scrolled
-                ? "bg-black/60 backdrop-blur-md border-white/10 shadow-2xl translate-y-2"
-                : "bg-transparent border-transparent translate-y-0"
+                ? "bg-[#050505]/40 backdrop-blur-xl border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.5)] scale-[0.98]"
+                : "bg-transparent border-transparent scale-100"
             }
           `}
         >
+          {/* Logo - Com efeito de brilho no hover */}
           <a
             href="#home"
             onClick={(e) => handleScrollTo(e, "#home")}
-            className="text-xl font-black text-white tracking-tighter hover:opacity-80 transition-opacity"
+            className="flex items-center group relative px-2"
           >
-            JG<span className="text-neon-cyan animate-pulse">.</span>
+            <span className="text-sm font-black text-white tracking-tighter transition-all group-hover:tracking-normal">
+              {content[language].logo}<span className="text-indigo-500 group-hover:text-white transition-colors">.</span>
+            </span>
           </a>
 
-          <div className="hidden md:flex gap-8">
+          {/* Links de Navegação - Com background flutuante no hover */}
+          <div className="hidden md:flex items-center gap-2 relative">
             {links.map((link, idx) => (
               <a
                 key={idx}
                 href={link.href}
+                onMouseEnter={() => setHoveredLink(idx)}
+                onMouseLeave={() => setHoveredLink(null)}
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-white transition-colors"
+                className="relative px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] transition-colors duration-300 z-10"
+                style={{ color: hoveredLink === idx ? '#fff' : 'rgba(255,255,255,0.4)' }}
               >
                 {link.name}
+                {hoveredLink === idx && (
+                  <motion.div
+                    layoutId="nav-hover"
+                    className="absolute inset-0 bg-white/[0.05] rounded-full -z-10"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  />
+                )}
               </a>
             ))}
           </div>
 
-          {/* Botão de UpLoad do Currículo */}
-          <a
-            href="/curriculo.pdf"
-            download="curriculo-josue-goulart.pdf"
-            className="flex items-center gap-2 border border-white/10 bg-white/5 backdrop-blur-md px-3 sm:px-4 py-1.5 rounded-full hover:bg-neon-cyan hover:border-neon-cyan hover:text-black transition-all duration-300 group"
-          >
-            <FaFileDownload
-              className="text-neon-cyan group-hover:text-black transition-colors"
-              size={14}
-            />
-            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 group-hover:text-black transition-colors">
-              {text.btnResume}
-            </span>
-          </a>
+          {/* Ações / Controles */}
+          <div className="flex items-center gap-3">
+            {/* Currículo - Estilo Glass-Button */}
+            <a
+              href="/curriculo.pdf"
+              download
+              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full 
+                       bg-indigo-500/10 border border-indigo-500/20 text-indigo-300
+                       hover:bg-indigo-500 hover:text-white transition-all duration-500 
+                       text-[9px] font-black uppercase tracking-widest active:scale-95"
+            >
+              <FaFileDownload size={10} />
+              {content[language].btnResume}
+            </a>
 
-          <button
-            onClick={toggleLanguage}
-            className="text-[10px] font-mono border border-white/20 px-4 py-1.5 rounded-full hover:bg-white/10 transition-all text-white bg-white/5"
-          >
-            {language === "pt" ? "EN" : "PT"}
-          </button>
+            {/* Toggle de Idioma - Minimalista Circular */}
+            <button
+              onClick={toggleLanguage}
+              className="w-9 h-9 flex items-center justify-center rounded-full 
+                       border border-white/5 bg-white/[0.02] text-white/40 
+                       hover:border-indigo-500/50 hover:text-indigo-400 transition-all 
+                       active:scale-90 relative overflow-hidden group"
+            >
+              <span className="text-[9px] font-black group-hover:scale-110 transition-transform">
+                {language === "pt" ? "EN" : "PT"}
+              </span>
+            </button>
+          </div>
         </motion.nav>
       </header>
     </>
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

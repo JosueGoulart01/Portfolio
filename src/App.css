@@ -1,11 +1,18 @@
 :root {
-  --neon-cyan: #22d3ee;
-  --dark-bg: #050505;
+  --neon-cyan: #818cf8;    /* indigo highlight */
+  --dark-bg: #050505;      /* deep tech black */
+  --accent: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.25);
+  
+  /* Camadas limpas para evitar o fundo geométrico nas transições */
+  --layer-bg: transparent;
+  --layer-mid: transparent;
+  --layer-fg: transparent;
+  --layer-grain: transparent;
 }
 
 /* ===== BASE ===== */
 html {
-  /* Removido scroll-behavior: smooth para não conflitar com o Lenis */
   scroll-padding-top: 100px;
 }
 
@@ -54,14 +61,121 @@ body {
   background: var(--neon-cyan);
 }
 
-/* ===== PERFORMANCE ===== */
+/* ===== PERFORMANCE & 3D CLEAN ===== */
 section {
-  contain: paint; /* Muito mais leve e eficiente que 'content' para isolamento */
-  will-change: transform; /* Prepara a GPU para animações do Framer Motion */
+  contain: layout style paint;
+  background-color: var(--dark-bg); /* Garante fundo sólido */
+}
+
+.section-3d-shell {
+  --parallax-x: 0;
+  --parallax-y: 0;
+  --parallax-scroll: 0;
+  --cinema-scale: 1;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  isolation: isolate;
+  overflow: clip;
+  background-color: var(--dark-bg);
+}
+
+/* Camadas de transição desativadas para limpeza visual */
+.section-parallax-layer-bg,
+.section-parallax-layer-mid,
+.section-parallax-layer-fg,
+.section-parallax-layer-grain {
+  background: none !important;
+  background-image: none !important;
+  display: none; 
+}
+
+.section-3d-frame {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #fff, var(--neon-cyan));
+  background: linear-gradient(135deg, #e8e8ed, var(--neon-cyan));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ===== TUNNEL 3D CLEAN ===== */
+.tunnel-shell {
+  position: relative;
+  perspective: 1600px;
+  perspective-origin: 50% 40%;
+  transform-style: preserve-3d;
+  isolation: isolate;
+  overflow: clip;
+  background-color: var(--dark-bg);
+}
+
+.tunnel-frame {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+.tunnel-ambient {
+  display: none;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .section-parallax-layers, .tunnel-ambient {
+    display: none;
+  }
+  .section-3d-frame, .tunnel-frame {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== TRANSICÃO EXCLUSIVA PARA MOBILE (Abaixo de 1024px) ===== */
+@media (max-width: 1024px) {
+  /* Desativa profundidade 3D complexa para evitar bugs de renderização mobile */
+  .section-3d-shell, 
+  .tunnel-shell {
+    perspective: none !important;
+    transform-style: flat !important;
+    overflow: visible !important;
+  }
+
+  /* Troca o movimento de profundidade (Z) por transição suave de opacidade/Y */
+  .section-3d-frame, 
+  .tunnel-frame {
+    transform: none !important; 
+    perspective: none !important;
+    backface-visibility: visible !important;
+    will-change: opacity, transform;
+    /* Transição linear e limpa para evitar flicker no scroll do celular */
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out !important;
+  }
+
+  /* Otimização de performance: reduz o blur do glassmorphism no mobile */
+  .glass-card {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  /* Remove transformações pesadas no hover para evitar "toque fantasma" */
+  .glass-card:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Garante que o fundo das seções seja opaco para esconder camadas inferiores */
+  section {
+    contain: content;
+    background-color: #050505 !important;
+  }
 }

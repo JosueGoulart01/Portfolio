@@ -1,72 +1,127 @@
 import { useState, lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Importamos o Router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ReactLenis } from "@studio-freight/react-lenis";
+import { AnimatePresence } from "framer-motion";
 
+// Componentes
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
-import Music from "./components/Music";
+import Insight from "./components/Insight"; 
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import AllProjects from "./components/AllProjects"; // O componente novo de galeria
+import Welcome from "./components/Welcome";
+import SectionCinematic3D from "./components/ui/SectionCinematic3D";
+import SectionTunnel3D from "./components/ui/SectionTunnel3D";
 import "./App.css";
 
-const Background = lazy(() => import("./components/Background"));
+// Lazy loading para otimização de rota pesada
+const AllProjects = lazy(() => import("./components/AllProjects"));
 
 function App() {
   const [language, setLanguage] = useState("pt");
+  const [hasEntered, setHasEntered] = useState(false);
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "pt" ? "en" : "pt"));
   };
 
+  // Configurações do Scroll Suave (Lenis)
   const lenisOptions = {
     duration: 1.2,
     lerp: 0.1,
-    wheelMultiplier: 1,
     smoothWheel: true,
-    syncTouch: true,
+    wheelMultiplier: 1,
+    orientation: "vertical",
+    gestureOrientation: "vertical",
+    smoothTouch: false,
   };
 
   return (
     <ReactLenis root options={lenisOptions}>
-      {/* O Router PRECISA envolver tudo que contém Links ou Routes */}
-      <Router> 
-        <div className="relative font-sans min-h-screen selection:bg-neon-cyan/30 selection:text-white text-slate-200 bg-black">
+      {/* Ativando as Future Flags do React Router v7 para limpar o console 
+        e preparar a aplicação para a próxima versão estável.
+      */}
+      <Router 
+        future={{ 
+          v7_startTransition: true, 
+          v7_relativeSplatPath: true 
+        }}
+      >
+        <div className="relative font-sans min-h-screen text-[#e8e8ed] bg-[#050505] selection:bg-indigo-500/30 overflow-x-hidden">
           
-          <div className="fixed inset-0 z-0 pointer-events-none">
-            <Suspense fallback={<div className="bg-black w-full h-full" />}>
-              <Background />
-            </Suspense>
-          </div>
+          {/* TELA DE INTRODUÇÃO (WELCOME) */}
+          <AnimatePresence mode="wait">
+            {!hasEntered && (
+              <Welcome 
+                key="welcome-screen"
+                language={language} 
+                onEnter={() => setHasEntered(true)} 
+              />
+            )}
+          </AnimatePresence>
 
-          <div className="relative z-10 flex flex-col min-h-screen">
-            <Navbar language={language} toggleLanguage={toggleLanguage} />
+          {/* CONTEÚDO PRINCIPAL - Renderiza apenas após a interação no Welcome */}
+          {hasEntered && (
+            <div className="relative z-10 flex flex-col min-h-screen animate-in fade-in duration-1000">
+              <Navbar language={language} toggleLanguage={toggleLanguage} />
 
-            <main className="flex-grow">
-              <Routes>
-                {/* ROTA DA HOME (Sua página principal atual) */}
-                <Route path="/" element={
-                  <>
-                    <Hero language={language} />
-                    <div className="h-16 md:h-20" />
-                    <About language={language} />
-                    <Projects language={language} />
-                    <Experience language={language} />
-                    <Music language={language} />
-                    <Contact language={language} />
-                  </>
-                } />
+              <main className="flex-grow">
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <>
+                        <SectionCinematic3D direction="down" intensity="deep" amount={0.5}>
+                          <Hero language={language} />
+                        </SectionCinematic3D>
+                        
+                        <SectionTunnel3D>
+                          <About language={language} />
+                        </SectionTunnel3D>
+                        
+                        <SectionCinematic3D direction="right" intensity="deep">
+                          <Projects language={language} />
+                        </SectionCinematic3D>
+                        
+                        <SectionCinematic3D direction="up" intensity="medium">
+                          <Experience language={language} />
+                        </SectionCinematic3D>
+                        
+                        {/* Seção Insight do Dia */}
+                        <SectionCinematic3D direction="left" intensity="soft">
+                          <Insight language={language} />
+                        </SectionCinematic3D>
+                        
+                        <SectionTunnel3D delay={0.05}>
+                          <Contact language={language} />
+                        </SectionTunnel3D>
+                      </>
+                    }
+                  />
+                  
+                  <Route
+                    path="/todos-projetos"
+                    element={
+                      <Suspense 
+                        fallback={
+                          <div className="h-screen w-full flex items-center justify-center bg-[#050505]">
+                            <div className="w-12 h-[1px] bg-indigo-500 animate-pulse" />
+                          </div>
+                        }
+                      >
+                        <AllProjects language={language} />
+                      </Suspense>
+                    }
+                  />
+                </Routes>
+              </main>
 
-                {/* ROTA DA GALERIA (A página de todos os projetos) */}
-                <Route path="/todos-projetos" element={<AllProjects language={language} />} />
-              </Routes>
-            </main>
-
-            <Footer />
-          </div>
+              <Footer language={language} />
+            </div>
+          )}
         </div>
       </Router>
     </ReactLenis>

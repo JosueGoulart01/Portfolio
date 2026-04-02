@@ -2,8 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Unified Dark Tech Design System ──────────────────────────── */
+:root {
+  /* Backgrounds */
+  --color-bg:      #050505; /* O preto profundo que você usa no Contact */
+  --color-surface: #0c0c0e;
+  --color-card:    #111115;
+  --color-border:  #1d1d23;
+  --color-line:    #252530;
+
+  /* Text */
+  --color-text:      #e8e8ed;
+  --color-secondary: #8e8e97;
+  --color-dim:       #555560;
+
+  /* Accents — indigo tech */
+  --color-accent:      #6366f1;
+  --color-accent-2:    #818cf8;
+  --color-accent-glow: rgba(99, 102, 241, 0.22);
+  
+  /* Aliases para compatibilidade com seus outros estilos */
+  --dark-bg: var(--color-bg);
+  --neon-cyan: var(--color-accent-2);
+  --accent: var(--color-accent);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #030014;
-  color: #f8fafc;
+  background-color: var(--color-bg); /* Aplica o fundo escuro em tudo */
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+  margin: 0;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ajuste global para garantir que as seções não fiquem transparentes de forma estranha */
+section {
+  position: relative;
+  background-color: var(--color-bg);
 }

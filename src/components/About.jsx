@@ -1,72 +1,140 @@
 import { motion } from 'framer-motion';
+import { memo } from 'react';
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
 
 const About = ({ language }) => {
   const content = {
-  pt: {
-    title: "Sobre Mim.",
-    description: "Sou estudante de Engenharia de Software na PUC Minas e Desenvolvedor Full Stack, com foco em back-end e construção de sistemas escaláveis.",
-    focus: "Atuo no desenvolvimento de aplicações end-to-end, com ênfase em back-end utilizando Java e Spring Boot para construção de APIs REST robustas, aplicando princípios SOLID, arquitetura em camadas e testes automatizados com JUnit e Mockito. Tenho experiência com bancos de dados relacionais (MySQL e PostgreSQL), incluindo modelagem, otimização de consultas e integração com serviços. No front-end, desenvolvo interfaces modernas e responsivas com React, TypeScript e Tailwind CSS, priorizando componentização, tipagem forte e boa experiência do usuário.",
-    goals: "Também utilizo Python para automação e web scraping, além de Docker para containerização e padronização de ambientes. Trabalho com versionamento usando Git e sigo práticas de desenvolvimento orientadas à qualidade e manutenibilidade. Busco evoluir continuamente na construção de sistemas distribuídos, arquitetura de software e soluções de alto desempenho."
-  },
-  en: {
-    title: "About Me.",
-    description: "I am a Software Engineering student at PUC Minas and a Full Stack Developer focused on back-end and scalable systems.",
-    focus: "I build end-to-end applications with a strong focus on back-end development using Java and Spring Boot to design robust REST APIs, applying SOLID principles, layered architecture, and automated testing with JUnit and Mockito. I have experience with relational databases (MySQL and PostgreSQL), including data modeling, query optimization, and service integration. On the front-end, I develop modern and responsive interfaces using React, TypeScript, and Tailwind CSS, emphasizing component-based architecture, strong typing, and user experience.",
-    goals: "I also use Python for automation and web scraping, as well as Docker for containerization and environment standardization. I work with Git for version control and follow best practices focused on code quality and maintainability. I am continuously improving my skills in distributed systems, software architecture, and high-performance solutions."
-  }
-};
+    pt: {
+      tag: "// about_me",
+      title: "Minha Trajetória",
+      description: "Estudante de Engenharia de Software na PUC Minas e Dev Full Stack.",
+      focus: "Focado em projetar arquiteturas eficientes e soluções escaláveis. Atuo com o ecossistema Java/Spring Boot no back-end e interfaces modernas com React/Next.js no front-end.",
+      goals: "Acredito que o rigor analítico é fundamental para a criação de sistemas limpos, seguros e manuteníveis.",
+      stats: [
+        { n: '4º', label: 'Período', sub: 'Eng. Software' },
+        { n: '3+', label: 'Projetos', sub: 'Construídos' },
+        { n: 'PUC', label: 'Minas', sub: 'Estudos' },
+      ]
+    },
+    en: {
+      tag: "// about_me",
+      title: "My Journey",
+      description: "Software Engineering student at PUC Minas and Full Stack Developer.",
+      focus: "Focused on designing efficient architectures and scalable solutions. I work with Java/Spring Boot on the back-end and modern React/Next.js interfaces on the front-end.",
+      goals: "I believe analytical rigor is fundamental to creating clean, secure, and maintainable systems.",
+      stats: [
+        { n: '4th', label: 'Semester', sub: 'SW Engineering' },
+        { n: '3+', label: 'Projects', sub: 'Completed' },
+        { n: 'PUC', label: 'Minas', sub: 'University' },
+      ]
+    }
+  };
 
-  const text = content[language];
+  const text = content[language] || content.pt;
 
   return (
-    <section id="sobre" className="py-32 px-6 relative z-10">
-      <div className="max-w-5xl mx-auto">
+    <section id="sobre" className="relative py-20 md:py-32 px-6 md:px-16 lg:px-24 bg-[#050505] overflow-hidden">
+      
+      {/* Background Decor sutil */}
+      <div className="absolute inset-0 pointer-events-none select-none">
+        <div className="absolute -bottom-24 -right-24 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-indigo-500/5 blur-[80px] md:blur-[120px] rounded-full" />
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         
-        {/* Container Glassmorphism */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-black/30 backdrop-blur-md bg-black/60 border border-white/10 p-8 md:p-14 rounded-3xl shadow-2xl relative overflow-hidden"
+        {/* Header da Seção */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={stagger}
+          className="mb-12 md:mb-20 text-center lg:text-left"
         >
-          {/* Brilho decorativo de fundo */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-neon-cyan/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
-
-          <div className="flex flex-col md:flex-row gap-12 md:gap-20 relative z-10">
-            
-            {/* Esquerda: Título */}
-            <div className="md:w-1/3">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
-                {text.title}
-              </h2>
-              <div className="w-16 h-1.5 bg-gradient-to-r from-neon-cyan to-transparent rounded-full mb-8"></div>
-            </div>
-
-            {/* Direita: Texto */}
-            <div className="md:w-2/3 space-y-6 text-slate-300 font-light leading-relaxed">
-              <p className="text-xl md:text-2xl text-white font-medium leading-snug">
-                {text.description}
-              </p>
-              <p className="text-base md:text-lg opacity-90">
-                {text.focus}
-              </p>
-              
-              {/* Citação orgânica */}
-              <div className="bg-white/5 border border-white/5 p-6 rounded-2xl relative mt-8">
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-neon-purple rounded-l-2xl shadow-[0_0_10px_rgba(139,92,246,0.6)]"></div>
-                <p className="italic text-slate-200">
-                  "{text.goals}"
-                </p>
-              </div>
-            </div>
-
-          </div>
+          <motion.p variants={itemVariants} className="text-indigo-500/60 font-mono text-[9px] md:text-[10px] tracking-[0.4em] md:tracking-[0.5em] uppercase mb-3 md:mb-4">
+            {text.tag}
+          </motion.p>
+          <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-black text-white italic uppercase tracking-tighter">
+            {text.title}<span className="text-indigo-500 not-italic">.</span>
+          </motion.h2>
+          <motion.div variants={itemVariants} className="h-px w-16 md:w-20 bg-indigo-500/30 mt-4 md:mt-6 mx-auto lg:mx-0" />
         </motion.div>
 
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-start">
+          
+          {/* TEXTO PRINCIPAL */}
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="lg:col-span-7 space-y-6 md:space-y-8"
+          >
+            <motion.p variants={itemVariants} className="text-lg md:text-2xl font-medium text-white/90 leading-tight md:leading-snug">
+              {text.description}
+            </motion.p>
+            
+            <motion.p variants={itemVariants} className="text-slate-500 text-sm md:text-lg leading-relaxed font-light">
+              {text.focus}
+            </motion.p>
+
+            {/* Quote/Goals */}
+            <motion.div 
+              variants={itemVariants}
+              className="relative p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm"
+            >
+              <span className="absolute -top-3 -left-1 md:-top-4 md:-left-2 text-4xl md:text-6xl text-indigo-500/20 font-serif">"</span>
+              <p className="relative z-10 text-slate-400 text-sm md:text-base italic font-light leading-relaxed">
+                {text.goals}
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* STATS - Melhorado para Mobile */}
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={stagger}
+            className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3 md:gap-4"
+          >
+            {text.stats.map((s, i) => (
+              <motion.div
+                key={i}
+                variants={itemVariants}
+                className="group p-5 md:p-6 rounded-2xl bg-white/[0.01] border border-white/5 hover:border-indigo-500/30 transition-all duration-500 flex lg:block items-center justify-between"
+              >
+                <div className="flex items-center lg:items-end gap-4 lg:gap-6">
+                  <span className="text-3xl md:text-5xl font-black tracking-tighter text-white group-hover:text-indigo-400 transition-colors min-w-[3rem]">
+                    {s.n}
+                  </span>
+                  <div className="text-left">
+                    <p className="text-[9px] md:text-xs font-black text-indigo-500/80 uppercase tracking-widest leading-none mb-1">
+                      {s.label}
+                    </p>
+                    <p className="text-[8px] md:text-[10px] text-slate-500 uppercase font-medium">
+                      {s.sub}
+                    </p>
+                  </div>
+                </div>
+                {/* Indicador visual discreto para mobile no final do card */}
+                <div className="lg:hidden w-1 h-1 rounded-full bg-indigo-500/20" />
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
 };
 
-export default About;
+export default memo(About);
