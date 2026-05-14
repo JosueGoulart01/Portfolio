@@ -154,7 +154,7 @@ const Navbar = ({ language, toggleLanguage }) => {
 
           <div className="flex items-center gap-3">
             <a
-              href="/curriculo.pdf"
+              href="/josue_goulart_dev.pdf"
               download
               className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full 
                        bg-indigo-500/10 border border-indigo-500/20 text-indigo-300
