@@ -67,6 +67,7 @@ export const CardItem = ({ as: Tag = "div", children, className, translateX = 0,
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMouseEnterContext = () => {
   const context = useContext(MouseEnterContext);
   if (context === undefined) {

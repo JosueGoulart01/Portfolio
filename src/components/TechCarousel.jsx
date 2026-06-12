@@ -111,7 +111,7 @@ const TechButton = memo(({ name, icon, isActive, onClick }) => (
     `}
   >
     <span className="text-2xl">{icon}</span>
-    <span className="text-[10px] font-black uppercase tracking-[0.2em]">{name}</span>
+    <span className="text-[11px] font-black uppercase tracking-[0.2em]">{name}</span>
   </button>
 ));
  

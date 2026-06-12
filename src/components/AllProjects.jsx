@@ -112,7 +112,7 @@ const ProjectCard = memo(({ project, onSelect }) => (
         <h3 className="text-white font-black italic uppercase tracking-tight text-base leading-tight mb-1 group-hover:text-indigo-300 transition-colors duration-300">
           {project.title}
         </h3>
-        <p className="text-white/35 text-[10px] leading-relaxed line-clamp-2">
+        <p className="text-white/35 text-[11px] leading-relaxed line-clamp-2">
           {project.summary}
         </p>
       </div>
@@ -121,7 +121,7 @@ const ProjectCard = memo(({ project, onSelect }) => (
         {project.tech.map((t) => (
           <span
             key={t}
-            className="text-[7px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-indigo-500/[0.06] border border-indigo-500/15 text-indigo-400/70"
+            className="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-indigo-500/[0.06] border border-indigo-500/15 text-indigo-400/70"
           >
             {t}
           </span>
@@ -144,7 +144,7 @@ const ProjectCard = memo(({ project, onSelect }) => (
         </a>
         <button
           onClick={(e) => { e.stopPropagation(); }}
-          className="text-[8px] font-black uppercase tracking-[0.2em] text-indigo-500/60 hover:text-indigo-400 transition-colors"
+          className="text-[9px] font-black uppercase tracking-[0.2em] text-indigo-500/60 hover:text-indigo-400 transition-colors"
         >
           Ver detalhes →
         </button>
@@ -214,7 +214,7 @@ const ProjectModal = memo(({ project, onClose, language }) => {
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="text-[8px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300/80"
+                className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300/80"
               >
                 {t}
               </span>
@@ -226,14 +226,14 @@ const ProjectModal = memo(({ project, onClose, language }) => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-3 bg-white text-black rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-indigo-500 hover:text-white transition-all duration-300"
+              className="flex items-center gap-2 px-5 py-3 bg-white text-black rounded-xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-500 hover:text-white transition-all duration-300"
             >
               <FaGithub size={14} />
               GitHub
             </a>
             <button
               onClick={onClose}
-              className="flex items-center gap-2 px-5 py-3 bg-white/5 border border-white/10 text-white/50 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white/10 transition-all duration-300"
+              className="flex items-center gap-2 px-5 py-3 bg-white/5 border border-white/10 text-white/50 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] hover:bg-white/10 transition-all duration-300"
             >
               <FaTimes size={12} />
               {language === "pt" ? "Fechar" : "Close"}
@@ -264,6 +264,10 @@ const PROJECTS_DATA = {
     { id: 3, title: "Detalhes em Prata", category: "full", summary: "E-commerce de joias focado em performance.", description: "Aplicação full-stack para e-commerce de joias com integração de pagamentos e painel admin.", tech: ["Java", "Spring Boot", "TypeScript", "Next.js"], github: "https://github.com/JosueGoulart01/loja-de-joias", images: ["/img/detalhesPrata/image.png", "/img/detalhesPrata/image2.png"] },
     { id: 4, title: "Personal Portfolio v2", category: "front", summary: "Interface dark futurista de alto nível.", description: "Portfólio profissional focado em UX/UI com animações 3D, scroll suave e design system próprio.", tech: ["React", "TypeScript", "Next.js", "JS"], github: "https://github.com/JosueGoulart01/Portfolio", images: ["/img/portfolio/img1.png", "/img/portfolio/img2.png"] },
     { id: 5, title: "API Nutricional", category: "back", summary: "Microsserviço para consulta de alimentos.", description: "API REST para consulta de valores nutricionais de alimentos regionais brasileiros.", tech: ["Java", "Spring Boot", "MySQL", "Docker"], github: "https://github.com/JosueGoulart01/Api-TabelaNutricionalBrasileira", images: ["/img/ApiTabelaNutricionalBrasileira/ft1.png", "/img/ApiTabelaNutricionalBrasileira/ft2.png"] },
+    { id: 6, title: "Moeda Estudantil", category: "full", summary: "Plataforma de moeda virtual para mérito acadêmico.", description: "Sistema web que permite alunos receberem moedas virtuais de professores por mérito e trocá-las por benefícios em empresas parceiras.", tech: ["Java", "Spring Boot", "React", "TypeScript", "Docker"], github: "https://github.com/JosueGoulart01/moeda-estudantil", images: ["/img/MoedaEstudantil/image1.png", "/img/MoedaEstudantil/image2.png"] },
+    { id: 7, title: "Aluguel de Carros", category: "full", summary: "Sistema de gestão de locação de veículos.", description: "Plataforma acadêmica para gestão completa de aluguel de carros, com cadastro de clientes, autenticação JWT e fluxo de aprovação financeira.", tech: ["Java", "React", "TypeScript"], github: "https://github.com/JosueGoulart01/alguel-de-carros", images: ["/img/AluguelDeCarros/cover.svg"] },
+    { id: 8, title: "Face Recognition System", category: "back", summary: "Reconhecimento facial em tempo real via webcam.", description: "Aplicação desktop em Java para detecção e reconhecimento facial em tempo real, com cadastro guiado por poses e re-treinamento automático do modelo.", tech: ["Java", "Spring Boot"], github: "https://github.com/JosueGoulart01/Face-Recognition-System", images: ["/img/FaceRecognitionSystem/cover.svg"] },
+    { id: 9, title: "TicketFlow", category: "back", summary: "Sistema de venda de ingressos orientado a eventos.", description: "Sistema de venda de ingressos com arquitetura orientada a eventos, usando RabbitMQ para desacoplar a API de compras da geração de PDFs com QR code e envio de e-mails.", tech: ["Java", "Spring Boot", "Docker"], github: "https://github.com/JosueGoulart01/Ingressos-EDA-", images: ["/img/TicketFlow/cover.svg"] },
   ],
   en: [],
 };
@@ -307,7 +311,7 @@ const AllProjects = ({ language }) => {
             <div className="space-y-3">
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 text-indigo-500 font-mono text-[9px] tracking-[0.35em] uppercase group"
+                className="inline-flex items-center gap-2 text-indigo-500 font-mono text-[10px] tracking-[0.35em] uppercase group"
               >
                 <FaArrowLeft className="group-hover:-translate-x-1 transition-transform duration-200" />
                 {language === "pt" ? "Voltar para Home" : "Back to Home"}
@@ -324,7 +328,7 @@ const AllProjects = ({ language }) => {
               <input
                 type="text"
                 placeholder={language === "pt" ? "Buscar projeto ou tech..." : "Search project or tech..."}
-                className="w-full bg-white/[0.025] border border-white/8 rounded-2xl py-3.5 pl-11 pr-4 outline-none focus:border-indigo-500/40 text-[10px] font-bold tracking-[0.15em] text-white/70 placeholder:text-white/20 transition-all duration-300"
+                className="w-full bg-white/[0.025] border border-white/8 rounded-2xl py-3.5 pl-11 pr-4 outline-none focus:border-indigo-500/40 text-[11px] font-bold tracking-[0.15em] text-white/70 placeholder:text-white/20 transition-all duration-300"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -352,7 +356,7 @@ const AllProjects = ({ language }) => {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-5 py-2.5 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all duration-250 ${
+                className={`px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-250 ${
                   filter === cat
                     ? "bg-indigo-500 text-white shadow-lg shadow-indigo-500/20"
                     : "text-white/35 hover:text-white/65"
@@ -364,7 +368,7 @@ const AllProjects = ({ language }) => {
           </div>
  
           {/* Contador */}
-          <p className="text-white/20 text-[9px] font-bold uppercase tracking-widest mb-6">
+          <p className="text-white/20 text-[10px] font-bold uppercase tracking-widest mb-6">
             {filteredProjects.length}{" "}
             {language === "pt" ? "projeto(s) encontrado(s)" : "project(s) found"}
           </p>
@@ -389,7 +393,7 @@ const AllProjects = ({ language }) => {
               animate={{ opacity: 1 }}
               className="py-24 text-center"
             >
-              <p className="text-white/20 text-[10px] font-black uppercase tracking-[0.3em]">
+              <p className="text-white/20 text-[11px] font-black uppercase tracking-[0.3em]">
                 {language === "pt" ? "Nenhum projeto encontrado" : "No projects found"}
               </p>
             </motion.div>

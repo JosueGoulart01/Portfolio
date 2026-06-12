@@ -1,0 +1,37 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glowCar" cx="50%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="gridCar" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="#0a0a0a"/>
+  <rect width="800" height="500" fill="url(#gridCar)"/>
+  <rect width="800" height="500" fill="url(#glowCar)"/>
+
+  <!-- road -->
+  <line x1="0" y1="330" x2="800" y2="330" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2"/>
+  <line x1="0" y1="330" x2="800" y2="330" stroke="#ffffff" stroke-opacity="0.15" stroke-width="2" stroke-dasharray="24 18"/>
+
+  <!-- car -->
+  <g stroke="#a5b4fc" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M255 290 L285 215 Q300 195 325 195 L470 195 Q495 195 510 215 L545 290 Z"/>
+    <line x1="225" y1="290" x2="575" y2="290"/>
+    <line x1="345" y1="195" x2="320" y2="245"/>
+    <line x1="320" y1="245" x2="480" y2="245"/>
+    <line x1="455" y1="195" x2="480" y2="245"/>
+  </g>
+  <circle cx="320" cy="298" r="28" fill="#0a0a0a" stroke="#a5b4fc" stroke-width="7"/>
+  <circle cx="480" cy="298" r="28" fill="#0a0a0a" stroke="#a5b4fc" stroke-width="7"/>
+  <circle cx="320" cy="298" r="9" fill="#6366f1"/>
+  <circle cx="480" cy="298" r="9" fill="#6366f1"/>
+
+  <!-- headlight -->
+  <circle cx="555" cy="270" r="6" fill="#6366f1"/>
+
+  <text x="400" y="430" text-anchor="middle" font-family="monospace" font-size="22" letter-spacing="8" fill="#6366f1" fill-opacity="0.7" font-weight="bold">ALUGUEL DE CARROS</text>
+</svg>

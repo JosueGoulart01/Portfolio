@@ -12,7 +12,7 @@ export const TextGenerateEffect = ({ words, className }) => {
       { opacity: 1 },
       { duration: 2, delay: stagger(0.15) } // Velocidade da "digitação"
     );
-  }, [scope.current]);
+  }, [animate]);
 
   const renderWords = () => {
     return (

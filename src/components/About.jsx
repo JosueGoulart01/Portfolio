@@ -59,7 +59,7 @@ const About = ({ language }) => {
           variants={stagger}
           className="mb-12 md:mb-20 text-center lg:text-left"
         >
-          <motion.p variants={itemVariants} className="text-indigo-500/60 font-mono text-[9px] md:text-[10px] tracking-[0.4em] md:tracking-[0.5em] uppercase mb-3 md:mb-4">
+          <motion.p variants={itemVariants} className="text-indigo-500/60 font-mono text-[10px] md:text-[11px] tracking-[0.4em] md:tracking-[0.5em] uppercase mb-3 md:mb-4">
             {text.tag}
           </motion.p>
           <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-black text-white italic uppercase tracking-tighter">
@@ -91,7 +91,7 @@ const About = ({ language }) => {
               variants={itemVariants}
               className="relative p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm"
             >
-              <span className="absolute -top-3 -left-1 md:-top-4 md:-left-2 text-4xl md:text-6xl text-indigo-500/20 font-serif">"</span>
+              <span className="absolute -top-3 -left-1 md:-top-4 md:-left-2 text-4xl md:text-6xl text-indigo-500/20 font-serif">&quot;</span>
               <p className="relative z-10 text-slate-400 text-sm md:text-base italic font-light leading-relaxed">
                 {text.goals}
               </p>
@@ -117,10 +117,10 @@ const About = ({ language }) => {
                     {s.n}
                   </span>
                   <div className="text-left">
-                    <p className="text-[9px] md:text-xs font-black text-indigo-500/80 uppercase tracking-widest leading-none mb-1">
+                    <p className="text-[10px] md:text-xs font-black text-indigo-500/80 uppercase tracking-widest leading-none mb-1">
                       {s.label}
                     </p>
-                    <p className="text-[8px] md:text-[10px] text-slate-500 uppercase font-medium">
+                    <p className="text-[9px] md:text-[11px] text-slate-500 uppercase font-medium">
                       {s.sub}
                     </p>
                   </div>

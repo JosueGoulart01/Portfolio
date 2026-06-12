@@ -33,6 +33,7 @@ const ImageCarousel = memo(({ images, altText }) => {
     </div>
   );
 });
+ImageCarousel.displayName = "ImageCarousel";
 
 const Projects = ({ language }) => {
   const projectsData = {
@@ -61,7 +62,7 @@ const Projects = ({ language }) => {
           viewport={{ once: true }}
           className="mb-10 text-center md:text-left"
         >
-          <span className="text-indigo-500 text-[8px] font-bold tracking-[0.6em] uppercase">
+          <span className="text-indigo-500 text-[9px] font-bold tracking-[0.6em] uppercase">
             {language === "pt" ? "Portfólio" : "Portfolio"}
           </span>
           <h2 className="text-xl md:text-2xl font-bold text-white mt-1 tracking-tight">
@@ -90,14 +91,14 @@ const Projects = ({ language }) => {
                 <h3 className="text-white text-sm font-bold mb-1 group-hover:text-indigo-400 transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-[#8e8e93] text-[10px] leading-relaxed mb-4 flex-1 font-light line-clamp-2">
+                <p className="text-[#8e8e93] text-[11px] leading-relaxed mb-4 flex-1 font-light line-clamp-2">
                   {project.description}
                 </p>
 
                 {/* Tech Tags Mini */}
                 <div className="flex flex-wrap gap-1 mb-4">
                   {project.tech.map((t, j) => (
-                    <span key={j} className="text-[7px] uppercase tracking-wider font-bold px-1.5 py-0.5 bg-indigo-500/5 text-indigo-400/70 rounded border border-indigo-500/10">
+                    <span key={j} className="text-[8px] uppercase tracking-wider font-bold px-1.5 py-0.5 bg-indigo-500/5 text-indigo-400/70 rounded border border-indigo-500/10">
                       {t}
                     </span>
                   ))}
@@ -115,7 +116,7 @@ const Projects = ({ language }) => {
                   </a>
                   <Link
                     to="/todos-projetos"
-                    className="flex items-center gap-1 text-[8px] font-bold text-indigo-500/80 hover:text-indigo-400 transition-colors uppercase tracking-[0.15em]"
+                    className="flex items-center gap-1 text-[9px] font-bold text-indigo-500/80 hover:text-indigo-400 transition-colors uppercase tracking-[0.15em]"
                   >
                     {language === "pt" ? "Detalhes" : "Details"}
                     <FaArrowRight size={7} />
@@ -142,7 +143,7 @@ const Projects = ({ language }) => {
             border border-white/10 
             bg-white/[0.02]
             text-white 
-            text-[10px] md:text-[11px] 
+            text-[11px] md:text-[12px] 
             font-black uppercase tracking-[0.25em] 
             rounded-full 
             hover:bg-white hover:text-black hover:border-white 

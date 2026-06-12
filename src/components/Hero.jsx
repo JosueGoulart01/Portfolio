@@ -63,7 +63,7 @@ const Hero = ({ language }) => {
 
             {/* Tag flutuante visível também no mobile (opcional, ajustado para não poluir) */}
             <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-left-10 bg-[#050505] border border-white/10 px-4 py-2 lg:px-5 lg:py-3 rounded-xl shadow-2xl">
-               <span className="text-[8px] lg:text-[10px] font-bold text-indigo-400 tracking-widest uppercase">Full-Stack Dev</span>
+               <span className="text-[9px] lg:text-[11px] font-bold text-indigo-400 tracking-widest uppercase">Full-Stack Dev</span>
             </div>
           </div>
         </motion.div>
@@ -74,12 +74,12 @@ const Hero = ({ language }) => {
           <motion.div variants={itemVariants}>
             <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full border border-white/5 bg-white/[0.02]">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_8px_#6366f1]" />
-              <span className="text-[9px] tracking-[0.25em] font-bold text-indigo-300/80 uppercase">{text.status}</span>
+              <span className="text-[10px] tracking-[0.25em] font-bold text-indigo-300/80 uppercase">{text.status}</span>
             </div>
           </motion.div>
 
           <div className="space-y-4">
-            <motion.p variants={itemVariants} className="text-indigo-500/50 font-mono text-[10px] tracking-[0.4em] uppercase">
+            <motion.p variants={itemVariants} className="text-indigo-500/50 font-mono text-[11px] tracking-[0.4em] uppercase">
               {text.greeting}
             </motion.p>
 
@@ -93,16 +93,16 @@ const Hero = ({ language }) => {
             <motion.h2 variants={itemVariants} className="text-sm md:text-lg text-white/70 font-medium tracking-wide">
               {text.role}
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-slate-500 text-[13px] md:text-base leading-relaxed font-light">
+            <motion.p variants={itemVariants} className="text-slate-500 text-[14px] md:text-base leading-relaxed font-light">
               {text.description}
             </motion.p>
           </div>
 
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 justify-center lg:justify-start w-full sm:w-auto">
-            <a href="#projetos" className="px-10 py-3.5 bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-indigo-50 transition-all duration-300 transform-gpu active:scale-95 text-center">
+            <a href="#projetos" className="px-10 py-3.5 bg-white text-black text-[11px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-indigo-50 transition-all duration-300 transform-gpu active:scale-95 text-center">
               {text.btnProjects}
             </a>
-            <a href="#contato" className="px-10 py-3.5 border border-white/10 text-white/50 text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:text-white hover:border-white/20 transition-all duration-300 text-center">
+            <a href="#contato" className="px-10 py-3.5 border border-white/10 text-white/50 text-[11px] font-black uppercase tracking-[0.2em] rounded-full hover:text-white hover:border-white/20 transition-all duration-300 text-center">
               {text.btnContact}
             </a>
           </motion.div>

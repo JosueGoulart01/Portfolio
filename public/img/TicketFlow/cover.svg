@@ -1,0 +1,45 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glowTicket" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="gridTicket" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="#0a0a0a"/>
+  <rect width="800" height="500" fill="url(#gridTicket)"/>
+  <rect width="800" height="500" fill="url(#glowTicket)"/>
+
+  <!-- ticket body -->
+  <rect x="190" y="160" width="420" height="180" rx="16" fill="none" stroke="#a5b4fc" stroke-width="6"/>
+  <!-- perforation cutouts -->
+  <circle cx="480" cy="160" r="16" fill="#0a0a0a" stroke="#a5b4fc" stroke-width="6"/>
+  <circle cx="480" cy="340" r="16" fill="#0a0a0a" stroke="#a5b4fc" stroke-width="6"/>
+  <line x1="480" y1="190" x2="480" y2="310" stroke="#a5b4fc" stroke-width="3" stroke-dasharray="8 8"/>
+
+  <!-- text lines -->
+  <g stroke="#a5b4fc" stroke-width="6" stroke-linecap="round" stroke-opacity="0.8">
+    <line x1="220" y1="210" x2="350" y2="210"/>
+    <line x1="220" y1="240" x2="400" y2="240"/>
+    <line x1="220" y1="270" x2="330" y2="270"/>
+  </g>
+  <circle cx="235" cy="305" r="12" fill="none" stroke="#6366f1" stroke-width="5"/>
+  <line x1="260" y1="305" x2="340" y2="305" stroke="#6366f1" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- QR code -->
+  <g fill="#6366f1">
+    <rect x="510" y="190" width="22" height="22"/>
+    <rect x="556" y="190" width="22" height="22"/>
+    <rect x="510" y="236" width="22" height="22"/>
+    <rect x="533" y="213" width="22" height="22"/>
+    <rect x="556" y="236" width="22" height="22"/>
+    <rect x="510" y="282" width="22" height="22"/>
+    <rect x="556" y="282" width="22" height="22"/>
+    <rect x="533" y="259" width="22" height="22"/>
+  </g>
+
+  <text x="400" y="430" text-anchor="middle" font-family="monospace" font-size="22" letter-spacing="8" fill="#6366f1" fill-opacity="0.7" font-weight="bold">TICKETFLOW</text>
+</svg>

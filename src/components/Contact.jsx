@@ -104,7 +104,7 @@ const Contact = ({ language }) => {
             className="lg:col-span-5 space-y-8"
           >
             <div>
-              <p className="text-indigo-500/60 font-mono text-[10px] tracking-[0.5em] uppercase mb-4">
+              <p className="text-indigo-500/60 font-mono text-[11px] tracking-[0.5em] uppercase mb-4">
                 {t.label}
               </p>
               <h2 className="text-4xl md:text-5xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
@@ -157,7 +157,7 @@ const Contact = ({ language }) => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black text-white/40 uppercase tracking-widest ml-1">{t.nameLabel}</label>
+                  <label className="text-[11px] font-black text-white/40 uppercase tracking-widest ml-1">{t.nameLabel}</label>
                   <input
                     name="user_name"
                     type="text"
@@ -166,7 +166,7 @@ const Contact = ({ language }) => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black text-white/40 uppercase tracking-widest ml-1">{t.emailLabel}</label>
+                  <label className="text-[11px] font-black text-white/40 uppercase tracking-widest ml-1">{t.emailLabel}</label>
                   <input
                     name="user_email"
                     type="email"
@@ -177,7 +177,7 @@ const Contact = ({ language }) => {
               </div>
 
               <div className="space-y-2 mb-8">
-                <label className="text-[10px] font-black text-white/40 uppercase tracking-widest ml-1">{t.messageLabel}</label>
+                <label className="text-[11px] font-black text-white/40 uppercase tracking-widest ml-1">{t.messageLabel}</label>
                 <textarea
                   name="message"
                   rows="5"
@@ -189,7 +189,7 @@ const Contact = ({ language }) => {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="group relative w-full py-5 rounded-2xl bg-indigo-500 text-white text-[11px] font-black uppercase tracking-[0.2em] overflow-hidden transition-all hover:bg-indigo-600 active:scale-[0.98] disabled:opacity-50"
+                className="group relative w-full py-5 rounded-2xl bg-indigo-500 text-white text-[12px] font-black uppercase tracking-[0.2em] overflow-hidden transition-all hover:bg-indigo-600 active:scale-[0.98] disabled:opacity-50"
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
                   {status === "loading" ? (
@@ -201,7 +201,7 @@ const Contact = ({ language }) => {
               </button>
 
               {status === "error" && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4 flex items-center justify-center gap-2 text-red-400 text-[10px] font-bold uppercase">
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4 flex items-center justify-center gap-2 text-red-400 text-[11px] font-bold uppercase">
                   <FaExclamationCircle /> {t.errorMsg}
                 </motion.div>
               )}

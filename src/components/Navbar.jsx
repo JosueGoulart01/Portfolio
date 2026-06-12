@@ -136,7 +136,7 @@ const Navbar = ({ language, toggleLanguage }) => {
                 onMouseEnter={() => setHoveredLink(idx)}
                 onMouseLeave={() => setHoveredLink(null)}
                 onClick={(e) => handleScrollTo(e, link.href)}
-                className="relative px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.3em] transition-colors duration-300 z-10"
+                className="relative px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.3em] transition-colors duration-300 z-10"
                 style={{ color: hoveredLink === idx ? '#fff' : 'rgba(255,255,255,0.4)' }}
               >
                 {link.name}
@@ -159,7 +159,7 @@ const Navbar = ({ language, toggleLanguage }) => {
               className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full 
                        bg-indigo-500/10 border border-indigo-500/20 text-indigo-300
                        hover:bg-indigo-500 hover:text-white transition-all duration-500 
-                       text-[9px] font-black uppercase tracking-widest active:scale-95 pointer-events-auto"
+                       text-[10px] font-black uppercase tracking-widest active:scale-95 pointer-events-auto"
             >
               <FaFileDownload size={10} />
               {content[language].btnResume}
@@ -172,7 +172,7 @@ const Navbar = ({ language, toggleLanguage }) => {
                        hover:border-indigo-500/50 hover:text-indigo-400 transition-all 
                        active:scale-90 relative overflow-hidden group pointer-events-auto"
             >
-              <span className="text-[9px] font-black group-hover:scale-110 transition-transform">
+              <span className="text-[10px] font-black group-hover:scale-110 transition-transform">
                 {language === "pt" ? "EN" : "PT"}
               </span>
             </button>

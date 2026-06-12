@@ -66,7 +66,7 @@ const Insight = ({ language }) => {
             <motion.p 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-indigo-500/60 font-mono text-[10px] tracking-[0.5em] uppercase"
+              className="text-indigo-500/60 font-mono text-[11px] tracking-[0.5em] uppercase"
             >
               {t.tag}
             </motion.p>
@@ -88,7 +88,7 @@ const Insight = ({ language }) => {
             <button 
               onClick={fetchArticle}
               disabled={loading}
-              className="flex items-center gap-3 px-6 py-3 rounded-full border border-white/5 bg-white/[0.02] text-[10px] font-black text-white/40 uppercase tracking-widest hover:text-white hover:border-indigo-500/30 transition-all group mx-auto lg:mx-0"
+              className="flex items-center gap-3 px-6 py-3 rounded-full border border-white/5 bg-white/[0.02] text-[11px] font-black text-white/40 uppercase tracking-widest hover:text-white hover:border-indigo-500/30 transition-all group mx-auto lg:mx-0"
             >
               <FiRefreshCw className={`transition-transform duration-700 ${loading ? 'animate-spin' : 'group-active:rotate-180'}`} />
               {loading ? "Update" : "Refresh Insight"}
@@ -106,7 +106,7 @@ const Insight = ({ language }) => {
                   exit={{ opacity: 0 }}
                   className="w-full max-w-[500px] aspect-[4/3] flex items-center justify-center border border-white/5 rounded-[32px] bg-white/[0.01]"
                 >
-                  <span className="text-[10px] font-mono text-indigo-500/40 animate-pulse tracking-widest uppercase">{t.syncing}</span>
+                  <span className="text-[11px] font-mono text-indigo-500/40 animate-pulse tracking-widest uppercase">{t.syncing}</span>
                 </motion.div>
               ) : (
                 article && (
@@ -130,8 +130,8 @@ const Insight = ({ language }) => {
                           className="w-10 h-10 rounded-full border border-white/10 grayscale group-hover:grayscale-0 transition-all"
                         />
                         <div>
-                          <p className="text-[10px] font-black text-white tracking-widest uppercase">{article.user.name}</p>
-                          <p className="text-[9px] text-indigo-400 font-mono tracking-tighter">@{article.user.username}</p>
+                          <p className="text-[11px] font-black text-white tracking-widest uppercase">{article.user.name}</p>
+                          <p className="text-[10px] text-indigo-400 font-mono tracking-tighter">@{article.user.username}</p>
                         </div>
                       </div>
 
@@ -141,7 +141,7 @@ const Insight = ({ language }) => {
 
                       <div className="flex flex-wrap gap-2 mb-8">
                         {article.tag_list.slice(0, 3).map(tag => (
-                          <span key={tag} className="text-[9px] font-bold text-white/20 bg-white/5 px-2 py-1 rounded-md uppercase tracking-widest group-hover:text-indigo-300/60 transition-colors">
+                          <span key={tag} className="text-[10px] font-bold text-white/20 bg-white/5 px-2 py-1 rounded-md uppercase tracking-widest group-hover:text-indigo-300/60 transition-colors">
                             #{tag}
                           </span>
                         ))}
@@ -152,14 +152,14 @@ const Insight = ({ language }) => {
                           href={article.url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] group/link"
+                          className="flex items-center gap-2 text-[11px] font-black text-indigo-400 uppercase tracking-[0.2em] group/link"
                         >
                           {t.readMore}
                           <FiArrowUpRight size={14} className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                         </a>
                         <div className="flex items-center gap-2 text-white/20">
                           <FiBookOpen size={12} />
-                          <span className="text-[10px] font-mono tracking-tighter">{article.reading_time_minutes} min read</span>
+                          <span className="text-[11px] font-mono tracking-tighter">{article.reading_time_minutes} min read</span>
                         </div>
                       </div>
                     </div>

@@ -55,7 +55,7 @@ const Welcome = ({ language, onEnter }) => {
               <span className="w-1 h-1 rounded-full bg-indigo-500 animate-pulse"></span>
               <span className="w-1 h-1 rounded-full bg-indigo-500/50"></span>
             </div>
-            <span className="text-[7px] text-slate-500 font-bold uppercase tracking-[0.4em]">
+            <span className="text-[8px] text-slate-500 font-bold uppercase tracking-[0.4em]">
               Kernel Interface v2
             </span>
           </div>
@@ -65,7 +65,7 @@ const Welcome = ({ language, onEnter }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-indigo-400 font-mono text-[9px] md:text-[11px] tracking-[0.6em] uppercase mb-4"
+            className="text-indigo-400 font-mono text-[10px] md:text-[12px] tracking-[0.6em] uppercase mb-4"
           >
             {language === 'pt' ? 'Bem-vindo ao meu universo' : 'Welcome to my universe'}
           </motion.p>
@@ -76,7 +76,7 @@ const Welcome = ({ language, onEnter }) => {
             <span className="text-transparent stroke-text italic">Engineer</span>
           </h1>
 
-          <p className="max-w-xs text-slate-500 text-[10px] md:text-xs font-medium leading-relaxed mb-12 mx-auto tracking-[0.1em] uppercase opacity-70">
+          <p className="max-w-xs text-slate-500 text-[11px] md:text-xs font-medium leading-relaxed mb-12 mx-auto tracking-[0.1em] uppercase opacity-70">
             {language === 'pt' 
               ? 'Arquitetura de software & Design de alta fidelidade' 
               : 'Software architecture & High-fidelity design'}
@@ -86,7 +86,7 @@ const Welcome = ({ language, onEnter }) => {
           <div className="w-full flex justify-center">
             <button 
               onClick={onEnter}
-              className="group relative flex items-center justify-center px-12 py-5 bg-white text-black text-[10px] font-black uppercase tracking-[0.5em] rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transform hover:scale-105 active:scale-95"
+              className="group relative flex items-center justify-center px-12 py-5 bg-white text-black text-[11px] font-black uppercase tracking-[0.5em] rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transform hover:scale-105 active:scale-95"
             >
               <span className="relative z-10">
                 {language === 'pt' ? 'Inicializar' : 'Initialize'}
@@ -98,7 +98,7 @@ const Welcome = ({ language, onEnter }) => {
 
       {/* Decoração Lateral */}
       <div className="absolute left-6 bottom-10 hidden lg:block opacity-20 pointer-events-none">
-        <div className="text-[7px] font-mono text-white tracking-[0.5em] [writing-mode:vertical-lr] uppercase flex items-center gap-4">
+        <div className="text-[8px] font-mono text-white tracking-[0.5em] [writing-mode:vertical-lr] uppercase flex items-center gap-4">
           <span>System_Ready</span>
           <div className="h-12 w-[1px] bg-white"></div>
           <span>2026_Edition</span>

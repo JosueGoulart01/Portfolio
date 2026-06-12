@@ -14,17 +14,17 @@ const Footer = ({ language }) => {
         
         {/* Lado Esquerdo: Nome e Ano */}
         <div className="flex items-center gap-3">
-          <span className="text-[10px] font-black text-white italic tracking-tighter uppercase">
+          <span className="text-[11px] font-black text-white italic tracking-tighter uppercase">
             JG<span className="text-indigo-500 not-italic">.</span>
           </span>
-          <span className="text-[9px] text-white/20 font-mono tracking-widest">
+          <span className="text-[10px] text-white/20 font-mono tracking-widest">
             © {currentYear}
           </span>
         </div>
 
         {/* Lado Direito: Stack simplificada */}
         <div className="flex items-center gap-4">
-          <p className="text-[9px] text-white/40 font-medium uppercase tracking-[0.2em]">
+          <p className="text-[10px] text-white/40 font-medium uppercase tracking-[0.2em]">
             {t}
           </p>
           <div className="w-1 h-1 rounded-full bg-indigo-500 animate-pulse" />
