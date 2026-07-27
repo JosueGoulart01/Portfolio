@@ -6,69 +6,101 @@ const EXPERIENCE_DATA = {
   pt: [
     {
       id: 1,
-      role: "Dev Spring Boot & Lead",
-      company: "Laboratório LIM",
-      period: "Out. 2025 - Presente",
-      description: "Desenvolvimento de sistemas escaláveis para gestão acadêmica, focando em robustez e performance no ecossistema Java.",
-      techStack: ["Java 21", "Spring Boot", "PostgreSQL", "Docker"],
+      role: "Projeto de Extensão – Dev Full-Stack",
+      company: "Agência Experimental de Software (PUC Minas)",
+      period: "Abr. 2026 - Presente",
+      description: "Contribuição para uma plataforma voltada a fisioterapeutas, para monitoramento de pacientes e prescrição de exercícios domiciliares.",
+      techStack: ["Java", "Spring Boot", "PostgreSQL", "Flutter", "React"],
       achievements: [
-        "Arquitetura de microsserviços e APIs RESTful.",
-        "Implementação de Spring Security e OAuth2.",
-        "Otimização de queries e persistência de dados com JPA/Hibernate."
+        "Construção de APIs REST integrando PostgreSQL, dando suporte a apps mobile (Flutter) e web (React).",
+        "Aplicação de boas práticas de modelagem de dados e versionamento com Git.",
+        "Desenvolvimento escalável de funcionalidades em equipe multidisciplinar."
       ],
-      pos: { x: 30, y: 35 },
+      pos: { x: 50, y: 12 },
       color: "text-indigo-400",
       delay: 0
     },
     {
       id: 2,
-      role: "Analista de Dados",
-      company: "PUC Minas",
-      period: "Junho 2025 - Out. 2025",
-      description: "Extração de insights e modelagem estatística para suporte à decisão em projetos de extensão universitária.",
-      techStack: ["Python", "Pandas", "Power BI", "SQL"],
+      role: "Dev Full-Stack (Freelance & Projetos Pessoais)",
+      company: "Independente",
+      period: "2024 - Presente",
+      description: "Construção de APIs RESTful escaláveis com Spring Boot e interfaces modernas com React e TypeScript, do back-end ao deploy em nuvem.",
+      techStack: ["Java", "Spring Boot", "React", "TypeScript", "Docker", "AWS"],
       achievements: [
-        "Criação de dashboards interativos para monitoramento de KPIs.",
-        "Limpeza e tratamento de grandes volumes de dados (ETL).",
-        "Aplicação de modelos de regressão para previsão de demanda."
+        "Projetou APIs RESTful completas com arquitetura em camadas (Controller/Service/Repository).",
+        "Implementou autenticação JWT com Spring Security e testes automatizados (JUnit/Mockito).",
+        "Containerizou e implantou aplicações na AWS/GCP com CI/CD (GitHub Actions) e Kubernetes."
       ],
-      pos: { x: 70, y: 65 },
+      pos: { x: 80, y: 78 },
       color: "text-indigo-400",
-      delay: 0.2
+      delay: 0.15
+    },
+    {
+      id: 3,
+      role: "Pesquisa Científica – Gamificação na Educação",
+      company: "PUC Minas",
+      period: "Ago. 2025 - Jan. 2026",
+      description: "Pesquisa acadêmica sobre o uso de plataformas gamificadas (Kahoot!, Quizizz) como apoio ao ensino e seu impacto no engajamento estudantil.",
+      techStack: ["Pesquisa Acadêmica", "Revisão de Literatura", "Metodologia Científica"],
+      achievements: [
+        "Análise do impacto de ferramentas gamificadas na participação e retenção de conhecimento.",
+        "Condução de revisão de literatura e análise de estudos científicos.",
+        "Elaboração de relatórios acadêmicos sobre metodologias de aprendizagem ativa."
+      ],
+      pos: { x: 20, y: 78 },
+      color: "text-indigo-400",
+      delay: 0.3
     }
   ],
   en: [
     {
       id: 1,
-      role: "Spring Boot Dev & Lead",
-      company: "LIM Laboratory",
-      period: "Oct. 2025 - Present",
-      description: "Development of scalable systems for academic management, focusing on robustness and performance within the Java ecosystem.",
-      techStack: ["Java 21", "Spring Boot", "PostgreSQL", "Docker"],
+      role: "University Outreach Project – Full-Stack Dev",
+      company: "Software Experimental Agency (PUC Minas)",
+      period: "Apr. 2026 - Present",
+      description: "Contributing to a platform for physical therapists to monitor patients and prescribe home exercises.",
+      techStack: ["Java", "Spring Boot", "PostgreSQL", "Flutter", "React"],
       achievements: [
-        "Microservices architecture and RESTful APIs.",
-        "Implementation of Spring Security and OAuth2.",
-        "Query optimization and data persistence with JPA/Hibernate."
+        "Built REST APIs integrating PostgreSQL, supporting mobile (Flutter) and web (React) apps.",
+        "Applied data modeling best practices and Git versioning.",
+        "Developed scalable features within a multidisciplinary team."
       ],
-      pos: { x: 30, y: 35 },
+      pos: { x: 50, y: 12 },
       color: "text-indigo-400",
       delay: 0
     },
     {
       id: 2,
-      role: "Data Analyst",
-      company: "PUC Minas",
-      period: "June 2025 - Oct. 2025",
-      description: "Insight extraction and statistical modeling to support decision-making in university outreach projects.",
-      techStack: ["Python", "Pandas", "Power BI", "SQL"],
+      role: "Full-Stack Dev (Freelance & Personal Projects)",
+      company: "Independent",
+      period: "2024 - Present",
+      description: "Building scalable RESTful APIs with Spring Boot and modern interfaces with React and TypeScript, from back-end to cloud deployment.",
+      techStack: ["Java", "Spring Boot", "React", "TypeScript", "Docker", "AWS"],
       achievements: [
-        "Creation of interactive dashboards for KPI monitoring.",
-        "Data cleaning and processing of large volumes (ETL).",
-        "Application of regression models for demand forecasting."
+        "Designed full RESTful APIs with layered architecture (Controller/Service/Repository).",
+        "Implemented JWT authentication with Spring Security and automated tests (JUnit/Mockito).",
+        "Containerized and deployed apps on AWS/GCP with CI/CD (GitHub Actions) and Kubernetes."
       ],
-      pos: { x: 70, y: 65 },
+      pos: { x: 80, y: 78 },
       color: "text-indigo-400",
-      delay: 0.2
+      delay: 0.15
+    },
+    {
+      id: 3,
+      role: "Scientific Research – Gamification in Education",
+      company: "PUC Minas",
+      period: "Aug. 2025 - Jan. 2026",
+      description: "Academic research on gamified platforms (Kahoot!, Quizizz) as teaching tools and their impact on student engagement.",
+      techStack: ["Academic Research", "Literature Review", "Scientific Methodology"],
+      achievements: [
+        "Analyzed the impact of gamified tools on classroom participation and retention.",
+        "Conducted literature review and analysis of scientific studies.",
+        "Authored academic reports on active learning methodologies."
+      ],
+      pos: { x: 20, y: 78 },
+      color: "text-indigo-400",
+      delay: 0.3
     }
   ]
 };
@@ -87,22 +119,22 @@ const Experience = ({ language }) => {
   return (
     <section id="experiencias" className="py-24 px-6 md:px-12 bg-[#050505] relative overflow-hidden">
       <div className="max-w-5xl mx-auto flex flex-col lg:grid lg:grid-cols-10 gap-12 items-center">
-        
+
         {/* Painel Esquerdo: Grafo */}
         <div className="w-full lg:col-span-4 relative h-[400px] bg-[#0c0c0e] border border-white/5 rounded-2xl overflow-hidden group">
-          
+
           <svg className="absolute inset-0 w-full h-full pointer-events-none">
             {experiences.map((exp) => (
-              <motion.line 
+              <motion.line
                 key={`line-${exp.id}`}
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ 
-                  pathLength: 1, 
-                  opacity: selectedNode?.id === exp.id ? 0.6 : 0.15 
+                animate={{
+                  pathLength: 1,
+                  opacity: selectedNode?.id === exp.id ? 0.6 : 0.15
                 }}
-                x1={`${centerPos.x}%`} y1={`${centerPos.y}%`} 
-                x2={`${exp.pos.x}%`} y2={`${exp.pos.y}%`} 
-                stroke={selectedNode?.id === exp.id ? "#6366f1" : "white"} 
+                x1={`${centerPos.x}%`} y1={`${centerPos.y}%`}
+                x2={`${exp.pos.x}%`} y2={`${exp.pos.y}%`}
+                stroke={selectedNode?.id === exp.id ? "#6366f1" : "white"}
                 strokeWidth="1"
                 strokeDasharray="4 4"
               />
@@ -110,12 +142,12 @@ const Experience = ({ language }) => {
           </svg>
 
           {/* Root Node */}
-          <div 
+          <div
             className="absolute z-10 flex flex-col items-center justify-center"
             style={{ left: `${centerPos.x}%`, top: `${centerPos.y}%`, transform: 'translate(-50%, -50%)' }}
           >
             <div className="w-12 h-12 rounded-full bg-black border border-indigo-500/50 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-                <span className="text-[11px] font-bold text-white tracking-widest">LF</span>
+                <span className="text-[11px] font-bold text-white tracking-widest">JG</span>
             </div>
           </div>
 
@@ -146,7 +178,7 @@ const Experience = ({ language }) => {
 
         {/* Painel Direito: Terminal */}
         <div className="w-full lg:col-span-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
