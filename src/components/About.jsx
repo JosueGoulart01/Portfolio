@@ -20,8 +20,8 @@ const About = ({ language }) => {
       focus: "Focado em projetar arquiteturas eficientes e soluções escaláveis. Atuo com o ecossistema Java/Spring Boot no back-end e interfaces modernas com React/Next.js no front-end.",
       goals: "Acredito que o rigor analítico é fundamental para a criação de sistemas limpos, seguros e manuteníveis.",
       stats: [
-        { n: '4º', label: 'Período', sub: 'Eng. Software' },
-        { n: '3+', label: 'Projetos', sub: 'Construídos' },
+        { n: '5º', label: 'Período', sub: 'Eng. Software' },
+        { n: '5+', label: 'Projetos', sub: 'Construídos' },
         { n: 'PUC', label: 'Minas', sub: 'Estudos' },
       ]
     },
@@ -32,8 +32,8 @@ const About = ({ language }) => {
       focus: "Focused on designing efficient architectures and scalable solutions. I work with Java/Spring Boot on the back-end and modern React/Next.js interfaces on the front-end.",
       goals: "I believe analytical rigor is fundamental to creating clean, secure, and maintainable systems.",
       stats: [
-        { n: '4th', label: 'Semester', sub: 'SW Engineering' },
-        { n: '3+', label: 'Projects', sub: 'Completed' },
+        { n: '5th', label: 'Semester', sub: 'SW Engineering' },
+        { n: '5+', label: 'Projects', sub: 'Completed' },
         { n: 'PUC', label: 'Minas', sub: 'University' },
       ]
     }
